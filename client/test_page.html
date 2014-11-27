@@ -8,11 +8,14 @@ client.onopen = function() {
 
 	client.send(
 		{
-			"type": "hello",
-			"location": "world"
+			"type": "ping"
 		}
 	);
 };
+
+client.pong = function(event) {
+	alert("Pong! "+event);
+}
 
 client.connect();
 </script>

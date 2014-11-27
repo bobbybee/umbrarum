@@ -25,6 +25,10 @@ WSClient.prototype.message = function(msg) {
 
 WSClient.prototype.onmessage = function(msg) {
 	console.info(msg);
+
+	if(this[msg.type]) {
+		this[msg.type](msg);
+	}
 }
 
 WSClient.prototype.onopen = function() {
