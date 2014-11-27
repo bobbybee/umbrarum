@@ -10,13 +10,23 @@ function log(ws, event) {
 	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
 }
 
-var spellLED = null;
+var peripherals = {
 
+}
+
+// evil clue
 net.createServer(function(conn) {
-	spellLED = conn;
+	if(!peripherals.evilClue) {
+		peripherals.evilClue = conn;
+		console.info("Evil clue connected");
+	} else {
+		console.warn("Evil clue is already connected, but someone else is connecting");
+	}
 }).listen(1234);
 
 function castSpell(ws, event) {
+	peripherals.evilClue.write(event.spell);
+
 	if(event.spell == "open sesame") {
 		return {
 			'type': 'spell',
@@ -24,9 +34,10 @@ function castSpell(ws, event) {
 			'info': 'If you are trying to cheat, you really ought to try harder.'
 		};
 	} else if(event.spell == "illustra") {
-		spellLED.write('1');
+		//spellLED.write('1');
 	} else if(event.spell == "exstingue") {
-		spellLED.write('0');
+		peripherals.evilClue.write('\x0C\x11\x80');
+		//spellLED.write('0');
 	} else {
 		return {
 			'type': 'spell',
