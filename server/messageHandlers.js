@@ -1,5 +1,12 @@
 var net = require('net');
 
+var gameState = {
+	evilClueActive: true,
+	evilClueState: {
+		currentState: 0
+	}
+};
+
 function ping(ws, event) {
 	return {
 		'type': 'pong'
@@ -8,6 +15,19 @@ function ping(ws, event) {
 
 function log(ws, event) {
 	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
+	if(event.event == "switchViews" && gameState.evilClueActive) {
+		if(gameState.evilClueState.currentState == 0) {
+			gameState.evilClueState.currentState++;
+			peripherals.evilClue.write("\x0C\x11\x80");
+			peripherals.evilClue.write("Can't enchant me");
+			peripherals.evilClue.write("\x94Don't waste time");
+		} else if(gameState.evilClueState.currentState == 1 && event.newView == "wand") {
+			peripherals.evilClue.write("\x0C\x11\x80");
+			peripherals.evilClue.write("Authorization...");
+			peripherals.evilClue.write("\x94DENIED! Go away.");
+			gameState.evilClueState.currentState++;
+		}
+	}
 }
 
 var peripherals = {
@@ -18,6 +38,8 @@ var peripherals = {
 net.createServer(function(conn) {
 	if(!peripherals.evilClue) {
 		peripherals.evilClue = conn;
+		peripherals.evilClue.write("I have the clue.");
+		peripherals.evilClue.write("\x94You don't. Haha.");
 		console.info("Evil clue connected");
 	} else {
 		console.warn("Evil clue is already connected, but someone else is connecting");
@@ -36,8 +58,18 @@ function castSpell(ws, event) {
 	} else if(event.spell == "illustra") {
 		//spellLED.write('1');
 	} else if(event.spell == "exstingue") {
-		peripherals.evilClue.write('\x0C\x11\x80');
-		//spellLED.write('0');
+		if(gameState.evilClueActive)
+			peripherals.evilClue.write('\x0C\x11\x80');
+	} else if(event.spell == "pande") {
+		if(gameState.evilClueActive) {
+			peripherals.evilClue.write('\x0C\x11\x80');
+			peripherals.evilClue.write("OK, master :)");
+			
+			setTimeout(function() {
+				peripherals.evilClue.write('\x0C\x11\x80');
+				peripherals.evilClue.write("Venefici, summon");
+			}, 3000);
+		}
 	} else {
 		return {
 			'type': 'spell',

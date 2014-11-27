@@ -50,6 +50,14 @@ window.onload = function() {
 	
 	globals.socket = new WSClient(globals.host, globals.port);
 	globals.socket.spell = spellResult;
+
+	globals.socket.onopen = function() {
+		globals.logger.log({
+			event: "switchViews",
+			newView: globals.defaultView
+		});
+	};
+
 	globals.socket.connect();
 
 	globals.logger = new Logger(globals.socket);
