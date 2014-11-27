@@ -10,6 +10,7 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Haiku's
 * Poem (e.g. sonnets)
 * Printed paper in printer, possibly seen being printed to make it look more magic (so it wouldn't look like somebody put the paper there, more magical)
+  * This could be accomplished by one of us preloading the printer with our clue ahead of time, and simply printing a blank piece of paper when it is needed. However, the issue is that people are printing nonstop, and we don't know when it would be printed. Perhaps we could alert the teachers ahead of time, and print to the "Wheeler Room" printer, or perhaps the MS lounge printer could go down for "scheduled maintenance".
 
 * Use Arduino?
 * Use Makey Makey?
