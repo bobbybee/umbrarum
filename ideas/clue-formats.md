@@ -10,6 +10,11 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Haiku's
 * Poem (e.g. sonnets)
 
+* Use Arduino?
+* Use Makey Makey?
+  * with LOCKERS because they're METAL?
+  * with PAPER with GRAPHITE?
+
 ## not IRL
 
 * imgur's
