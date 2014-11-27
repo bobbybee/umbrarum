@@ -14,6 +14,13 @@ ViewManager.prototype.switchViews = function(newView) {
 	this.hideView(this.currentView);
 	this.currentView = newView;
 	this.showView(this.currentView);
+
+	if(globals.logger) {
+		globals.logger.log({
+			event: "switchViews",
+			newView: newView
+		});
+	}
 }
 
 ViewManager.prototype.getViewDiv = function(view) {
@@ -28,6 +35,21 @@ ViewManager.prototype.showView = function(view) {
 	this.getViewDiv(view).style.display = 'block';
 }
 
+function Logger(ws) {
+	this.ws = ws;
+}
+
+Logger.prototype.log = function(message) {
+	message.type = "log";
+
+	this.ws.send(message);
+}
+
 window.onload = function() {
 	globals.viewManager = new ViewManager(globals.defaultView, globals.views);
+	
+	globals.socket = new WSClient(globals.host, globals.port);
+	globals.socket.connect();
+
+	globals.logger = new Logger(globals.socket);
 }
