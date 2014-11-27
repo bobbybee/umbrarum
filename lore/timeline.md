@@ -12,5 +12,5 @@ project outline (chronological order)
   * **use lots of sensors!**
    * accelerometers, location sensors, etc.
 2. lead them to believe that they can make their own magic
-  * * have a virtual "cmd prompt" in website to cast "spells" that cause physical things to happen almost instantaneously ("cmd prompt" => **"magic wand"** or something)
+  * have a virtual "cmd prompt" in website to cast "spells" that cause physical things to happen almost instantaneously ("cmd prompt" => **"magic wand"** or something)
 3. lead them to a place where they supposedly cause something magical to happen
