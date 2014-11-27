@@ -9,6 +9,7 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Linear Barcodes
 * Haiku's
 * Poem (e.g. sonnets)
+* Printed paper in paper
 
 * Use Arduino?
 * Use Makey Makey?
