@@ -9,7 +9,7 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Linear Barcodes
 * Haiku's
 * Poem (e.g. sonnets)
-* Printed paper in paper
+* Printed paper in printer, possibly seen being printed to make it look more magic (so it wouldn't look like somebody put the paper there, more magical)
 
 * Use Arduino?
 * Use Makey Makey?
