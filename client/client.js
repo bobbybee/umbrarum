@@ -20,19 +20,23 @@ WSClient.prototype.connect = function() {
 }
 
 WSClient.prototype.message = function(msg) {
+	this.onmessage(JSON.parse(msg));
+}
 
+WSClient.prototype.onmessage = function(msg) {
+	console.info(msg);
 }
 
 WSClient.prototype.onopen = function() {
-	console.log("onopen");
+	console.info("onopen");
 }
 
 WSClient.prototype.onerror = function() {
-	console.log("onerror");
+	console.error("onerror");
 }
 
 WSClient.prototype.onclose = function() {
-	console.log("onclose");
+	console.error("onclose");
 }
 
 WSClient.prototype.write = function(data) {

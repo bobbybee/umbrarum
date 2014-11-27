@@ -2,5 +2,17 @@
 
 <script>
 var client = new WSClient("localhost", 8080);
+
+client.onopen = function() {
+	console.info("Connected");
+
+	client.send(
+		{
+			"type": "hello",
+			"location": "world"
+		}
+	);
+};
+
 client.connect();
 </script>
