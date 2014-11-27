@@ -24,6 +24,9 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Electronic candle/torch (paper, fan, and high-intensity LED)
   * Perhaps we have 3 of them in a box, and we do one of those puzzles where you illuminating one would extinguish another, and you are trying to get all of them on.
   * Or maybe we have a torch in a transparent case, and in order to get the clue, you have to extinguish the torch (infrared blaster? bluetooth?)
+  
+* Stubborn clue. (clue "paper" would be an Internet-facing LCD; you have to go to the website to reason with it / force it to talk).
+  * Relatively easy to do and we could really play with the personality and make the clue have a life of its own. 
 
 ## not IRL
 
