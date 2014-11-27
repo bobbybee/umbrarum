@@ -1,3 +1,5 @@
+var net = require('net');
+
 function ping(ws, event) {
 	return {
 		'type': 'pong'
@@ -8,6 +10,12 @@ function log(ws, event) {
 	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
 }
 
+var spellLED = null;
+
+net.createServer(function(conn) {
+	spellLED = conn;
+}).listen(1234);
+
 function castSpell(ws, event) {
 	if(event.spell == "open sesame") {
 		return {
@@ -15,6 +23,10 @@ function castSpell(ws, event) {
 			'success': false,
 			'info': 'If you are trying to cheat, you really ought to try harder.'
 		};
+	} else if(event.spell == "illuminate") {
+		spellLED.write('1');
+	} else if(event.spell == "extinguish") {
+		spellLED.write('0');
 	} else {
 		return {
 			'type': 'spell',
