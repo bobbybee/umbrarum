@@ -1,3 +1,6 @@
+project outline (chronological order)
+===============================
+
 1. impress *Liberators* with cool magic (real technology)
   * _see [ideas](https://github.com/bobbybee/umbrarum/blob/master/ideas/clue-formats.md#irl)_
     1. **locker trick** (capactive sensing, maybe in another/a different format?)
