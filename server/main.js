@@ -21,5 +21,7 @@ wss.on('connection', function(ws) {
 			console.error(e);
 		}
 	})
+
+	ws.logID = ws._socket.remoteAddress+":"+ws._socket.remotePort;
 	console.log("Hello");
 });
