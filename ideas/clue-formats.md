@@ -14,7 +14,7 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Use Makey Makey?
   * with LOCKERS because they're METAL?
   * with PAPER with GRAPHITE?
-* CAPACATIVE SENSING with LOCKERS! (sense when locker is touched and make shit happen)
+* CAPACATIVE SENSING with LOCKERS! (sense when locker is touched and make magic happen)
 * iBeacon
 
 ## not IRL
