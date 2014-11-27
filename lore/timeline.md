@@ -11,6 +11,6 @@ project outline (chronological order)
   * have an **AMAZING** website--it has to look really good, function really well, and make sense (this will make us look like we are wizards in many fields)
   * **use lots of sensors!**
    * accelerometers, location sensors, etc.
-2. lead them to believe that they can make their own magic
+2. lead the _Liberators_ to believe that they can make their own magic
   * have a virtual "cmd prompt" in website to cast "spells" that cause physical things to happen almost instantaneously ("cmd prompt" => **"magic wand"** or something)
-3. lead them to a place where they supposedly cause something magical to happen
+3. lead the _Liberators_ to a place where they supposedly cause something magical to happen at their will
