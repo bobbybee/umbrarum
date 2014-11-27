@@ -29,6 +29,9 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Stubborn clue. (clue "paper" would be an Internet-facing LCD; you have to go to the website to reason with it / force it to talk).
   * Relatively easy to do and we could really play with the personality and make the clue have a life of its own. 
 
+* Suduko using 7-segment LEDs. The solution to the puzzle as a whole would be the key to unlock the next clue. 
+  * Not very magical, though. Thoughts?
+
 ## not IRL
 
 * imgur's
