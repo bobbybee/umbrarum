@@ -12,7 +12,10 @@ wss.on('connection', function(ws) {
 			console.info(event);
 
 			if(messageHandlers[event.type || '']) {
-				ws.send(JSON.stringify(messageHandlers[event.type](ws, event)));
+				var res = JSON.stringify(messageHandlers[event.type](ws, event));
+				
+				if(res)
+					ws.send(res);
 			} else {
 				console.error("Unknown message type: "+event.type);
 			}

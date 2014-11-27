@@ -49,7 +49,7 @@ window.onload = function() {
 	globals.viewManager = new ViewManager(globals.defaultView, globals.views);
 	
 	globals.socket = new WSClient(globals.host, globals.port);
-	globals.spell = spellResult;
+	globals.socket.spell = spellResult;
 	globals.socket.connect();
 
 	globals.logger = new Logger(globals.socket);
@@ -64,7 +64,7 @@ function castSpell(spell) {
 
 function spellResult(event) {
 	if(globals.viewManager.currentView == "wand") {
-		alert(event.success+" "+event.message);
+		alert(event.success+" "+event.info);
 	} else {
 		console.error("spellResult "+JSON.stringify(event)+" at view "+globals.viewManager.currentView);
 	}

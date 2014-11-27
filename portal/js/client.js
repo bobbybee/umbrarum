@@ -28,6 +28,9 @@ WSClient.prototype.onmessage = function(msg) {
 
 	if(this[msg.type]) {
 		this[msg.type](msg);
+	} else {
+		console.error(msg.type+" response but no method on: ");
+		console.info(this);
 	}
 }
 
