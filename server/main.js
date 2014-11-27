@@ -5,7 +5,12 @@ var wss = new WebSocketServer({
 
 wss.on('connection', function(ws) {
 	ws.on('message', function(message) {
-		console.log(message);
+		try {
+			var event = JSON.parse(message);
+			console.info(event);
+		} catch(e) {
+			console.error(e);
+		}
 	})
 	console.log("Hello");
 });
