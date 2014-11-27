@@ -6,5 +6,8 @@
     4. **Physical Puzzles**; see "candle puzzle" in [ideas](https://github.com/bobbybee/umbrarum/blob/master/ideas/clue-formats.md#irl)
     4. _Note: if something boring like a poem were to be included in a clue or as a clue, it should be based on something magical like a hidden LCD screen turned on/actived by a timer or some other "magical" element_
   * have an **AMAZING** website--it has to look really good, function really well, and make sense (this will make us look like we are wizards in many fields)
+  * **use lots of sensors!**
+   * accelerometers, location sensors, etc.
 2. lead them to believe that they can make their own magic
+  * * have a virtual "cmd prompt" in website to cast "spells" that cause physical things to happen almost instantaneously ("cmd prompt" => **"magic wand"** or something)
 3. lead them to a place where they supposedly cause something magical to happen
