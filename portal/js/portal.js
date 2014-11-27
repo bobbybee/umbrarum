@@ -23,5 +23,5 @@ ViewManager.prototype.showView = function(view) {
 }
 
 window.onload = function() {
-
+	var viewManager = new ViewManager(globals.defaultView, globals.views);
 }
