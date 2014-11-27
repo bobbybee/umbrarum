@@ -23,9 +23,9 @@ function castSpell(ws, event) {
 			'success': false,
 			'info': 'If you are trying to cheat, you really ought to try harder.'
 		};
-	} else if(event.spell == "illuminate") {
+	} else if(event.spell == "illustra") {
 		spellLED.write('1');
-	} else if(event.spell == "extinguish") {
+	} else if(event.spell == "exstingue") {
 		spellLED.write('0');
 	} else {
 		return {
