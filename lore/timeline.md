@@ -13,4 +13,5 @@ project outline (chronological order)
    * accelerometers, location sensors, etc.
 2. lead the _Liberators_ to believe that they can make their own magic
   * have a virtual "cmd prompt" in website to cast "spells" that cause physical things to happen almost instantaneously ("cmd prompt" => **"magic wand"** or something)
+   * e.g. connect motor interfaces or actuators to a server, virtual cmd prompt on website sends signals over a websocket to that server to control interfaces (i.e motors, etc.)
 3. lead the _Liberators_ to a place where they supposedly cause something magical to happen at their will
