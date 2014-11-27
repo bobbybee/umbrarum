@@ -2,6 +2,12 @@ function ViewManager(defaultView, views) {
 	this.defaultView = defaultView;
 	this.views = views;
 	this.currentView = this.defaultView;
+
+	for(var i = 0; i < this.views.length; ++i) {
+		if(this.views[i] != this.defaultView) {
+			this.hideView(this.views[i]);
+		}
+	}
 }
 
 ViewManager.prototype.switchViews = function(newView) {
@@ -23,5 +29,5 @@ ViewManager.prototype.showView = function(view) {
 }
 
 window.onload = function() {
-	var viewManager = new ViewManager(globals.defaultView, globals.views);
+	globals.viewManager = new ViewManager(globals.defaultView, globals.views);
 }
