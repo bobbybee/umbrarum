@@ -50,6 +50,7 @@ window.onload = function() {
 	
 	globals.socket = new WSClient(globals.host, globals.port);
 	globals.socket.spell = spellResult;
+	globals.socket.newClue = newClue;
 
 	globals.socket.onopen = function() {
 		globals.logger.log({
@@ -76,4 +77,8 @@ function spellResult(event) {
 	} else {
 		console.error("spellResult "+JSON.stringify(event)+" at view "+globals.viewManager.currentView);
 	}
+}
+
+function newClue(event) {
+	alert("New clue! "+event.text);
 }

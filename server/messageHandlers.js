@@ -68,6 +68,12 @@ function castSpell(ws, event) {
 			setTimeout(function() {
 				peripherals.evilClue.write('\x0C\x11\x80');
 				peripherals.evilClue.write("Venefici, summon");
+				setTimeout(function() {
+					ws.send(JSON.stringify({
+						'type': 'newClue',
+						'text': 'Lorem ipsum dolor sit amet'
+					}));
+				}, 1000);
 			}, 3000);
 		}
 	} else {
