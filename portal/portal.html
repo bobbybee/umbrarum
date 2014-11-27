@@ -39,7 +39,8 @@ Please use your best code practices; the final website is going to be minified. 
 	</div>
 
 	<div id="view wand">
-		Magic wand!
+		Magic wand! <br/>
+		Enter thine spell: <input type="text" id="spell"/> <input type="submit" onclick="castSpell(document.getElementById('spell').value)" />
 		<input type="submit" onclick="globals.viewManager.switchViews('main')" value="Return to Portal Lobby"/>
 	</div>
 

@@ -53,3 +53,10 @@ window.onload = function() {
 
 	globals.logger = new Logger(globals.socket);
 }
+
+function castSpell(spell) {
+	globals.socket.send({
+		type: "castSpell",
+		spell: spell
+	});
+}
