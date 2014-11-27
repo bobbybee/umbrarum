@@ -1,11 +1,11 @@
-function WSSClient(target, port) {
+function WSClient(target, port) {
 	this.target = target;
 	this.port = port;
 	this.destination = "ws://"+this.target+":"+this.port;
 	this.socket = null;
 }
 
-WSSClient.prototype.connect = function() {
+WSClient.prototype.connect = function() {
 	this.socket = new WebSocket(this.destination);
 
 	var that = this;
@@ -19,24 +19,26 @@ WSSClient.prototype.connect = function() {
 	this.socket.onclose = this.onclose;
 }
 
-WSSClient.prototype.message = function(msg) {
+WSClient.prototype.message = function(msg) {
 
 }
 
-WSSClient.prototype.onopen = function() {
+WSClient.prototype.onopen = function() {
 	console.log("onopen");
 }
 
-WSSClient.prototype.onerror = function() {
+WSClient.prototype.onerror = function() {
 	console.log("onerror");
 }
 
-WSSClient.prototype.onclose = function() {
+WSClient.prototype.onclose = function() {
 	console.log("onclose");
 }
 
-WSSClient.prototype.write = function(data) {
+WSClient.prototype.write = function(data) {
 	this.socket.send(data);
 }
 
-WSSClient.prototype.
+WSClient.prototype.send = function(msg) {
+	this.write(JSON.stringify(msg));
+}
