@@ -40,3 +40,10 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * imgur's
 * anonymous reddit posts
 * http server on given ip
+
+* Internet Radio Technology
+ * Stream audio at a certain time
+ 
+* Audio Manipulation and Duplication
+ * recordings backwards as clues
+ * recordings inserted at a certain timestamp in a popular song
