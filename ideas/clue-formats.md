@@ -32,6 +32,9 @@ _Note:  All clues should start IRL, but they can go into the internet._
 * Suduko using 7-segment LEDs. The solution to the puzzle as a whole would be the key to unlock the next clue. 
   * Not very magical, though. Thoughts?
 
+* Levitation
+  * Google it. It's possible
+
 ## not IRL
 
 * imgur's
