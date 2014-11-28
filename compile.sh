@@ -11,7 +11,7 @@ html-minifier portal/index.html --remove-comments --remove-comments-from-cdata -
 uglifyjs portal/js/client.js --screw-ie8 --mangle --compress --lint -o a.out/js/client.js
 uglifyjs portal/js/portal.js --screw-ie8 --mangle --compress --lint -o a.out/js/portal.js
 cleancss -o a.out/css/style.css portal/css/style.css
-cleancss -o a.out/css/reset.css portal/css/reset.css
+# cleancss -o a.out/css/reset.css portal/css/reset.css # is this used anywhere?
 
 zip -u client.zip a.out/* a.out/css/* a.out/js/*
 rm -r a.out/
