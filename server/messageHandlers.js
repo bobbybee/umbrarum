@@ -53,23 +53,27 @@ function evilClueView(newView) {
 
 }
 
+function revealEvilClue(ws) {
+	PeripheralManager.write("evil clue",'\x0C\x11\x80');
+	PeripheralManager.write("evil clue","OK, master :)");
+	
+	setTimeout(function() {
+		PeripheralManager.write("evil clue",'\x0C\x11\x80');
+		PeripheralManager.write("evil clue","Venefici, summon");
+		setTimeout(function() {
+			PeripheralManager.write("evil clue","\x94----Clue sent");
+			ws.send(JSON.stringify({
+				'type': 'newClue',
+				'text': 'Lorem ipsum dolor sit amet'
+			}));
+		}, 1000);
+	}, 3000);
+}
+
 function castSpell(ws, event) {
 	if(event.spell == "pande") {
 		if(gameState.evilClueActive) {
-			PeripheralManager.write("evil clue",'\x0C\x11\x80');
-			PeripheralManager.write("evil clue","OK, master :)");
-			
-			setTimeout(function() {
-				PeripheralManager.write("evil clue",'\x0C\x11\x80');
-				PeripheralManager.write("evil clue","Venefici, summon");
-				setTimeout(function() {
-					PeripheralManager.write("evil clue","\x94----Clue sent");
-					ws.send(JSON.stringify({
-						'type': 'newClue',
-						'text': 'Lorem ipsum dolor sit amet'
-					}));
-				}, 1000);
-			}, 3000);
+			revealEvilClue(ws);
 		}
 	} else {
 		return {
