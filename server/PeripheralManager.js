@@ -18,7 +18,7 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 			if(hasHandshaked) {
 				peripheralSkeleton[peripheralType](message);
 			} else {
-				peripheralType = message.slice(-1); // remove newline at the end
+				peripheralType = message.toString().trim(); // remove newline at the end
 
 				if(!peripheralSkeleton[peripheralType]) {
 					console.error("Peripheral of type '"+peripheralType+"' connected but no entry in skeleton");
@@ -31,7 +31,8 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 				}
 
 				connectedPeripherals[peripheralType] = conn;
-				onconnect(peripheralType, conn);
+				onConnect(peripheralType, conn);
+				hasHandshaked = true;
 			}
 		});
 
