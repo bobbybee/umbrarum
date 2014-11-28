@@ -29,7 +29,7 @@ ViewManager.prototype.getViewDiv = function(id) {
 
 ViewManager.prototype.hideView = function(view) {
 	var div = this.getViewDiv(view);
-    move(div).set('width', 0).end();
+    //move(div).set('width', 0).end();
     setTimeout(function(){
         div.style.display = 'none';
     }, 500);
@@ -37,7 +37,7 @@ ViewManager.prototype.hideView = function(view) {
 
 ViewManager.prototype.showView = function(view) {
 	var div = this.getViewDiv(view);
-    move(div).set('width', 400).end();
+    //move(div).set('width', 400).end();
     setTimeout(function(){
         div.style.display = 'block';
     }, 500);
