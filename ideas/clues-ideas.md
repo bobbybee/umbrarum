@@ -1,4 +1,4 @@
-formats for clues
+ideas for clues
 =================
 
 _Note:  All clues should start IRL, but they can go into the internet._
