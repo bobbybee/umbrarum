@@ -20,8 +20,7 @@ PeripheralManager.start(
 	
 	function(type, connection) { // onConnect
 		if(type == 'evil clue') {
-			PeripheralManager.write("evil clue", "I have the clue.");
-			PeripheralManager.write("evil clue", "\x94You don't. Haha.");
+			evilClue.connect();
 		}
 	},
 
@@ -67,6 +66,10 @@ var evilClue = {
 				}));
 			}, 1000);
 		}, 3000);
+	},
+	connect: function() {
+		PeripheralManager.write("evil clue", "I have the clue.");
+		PeripheralManager.write("evil clue", "\x94You don't. Haha.");
 	}
 }
 
