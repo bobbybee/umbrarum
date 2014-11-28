@@ -1,4 +1,4 @@
-Interal Peripheral Protocol
+Internal Peripheral Protocol
 =======
 
 This page describes the protocol used internally to control peripherals connected to the game. This applies to the server extensions (specifically, the spell request), and the microcontrollers which host the peripherals themselves.
