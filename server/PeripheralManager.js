@@ -1,3 +1,4 @@
+var net = require('net');
 var connectedPeripherals = {};
 var peripheralSkeleton = {};
 
@@ -42,7 +43,7 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 }
 
 module.exports.start = PeripheralManager;
-module.exports.send = function(target, message) {
+module.exports.write = function(target, message) {
 	if(connectedPeripherals[target]) {
 		connectedPeripherals[target].write(message);
 	} else {
