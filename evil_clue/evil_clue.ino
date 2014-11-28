@@ -3,8 +3,8 @@
 #include <Ethernet.h>
 
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-IPAddress ip(10, 0, 1, 177);
-IPAddress server(10, 0, 1, 9);
+IPAddress ip(192, 168, 1, 177);
+IPAddress server(192, 168, 1, 14);
 EthernetClient client;
 
 SoftwareSerial mySerial(2, 3);
