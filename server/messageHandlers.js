@@ -1,10 +1,10 @@
 var net = require('net');
 
 var gameState = {
-	evilClueActive: true,
-	evilClueState: {
+	evilClue: {
+		active: true,
 		currentState: 0
-	}
+	},
 };
 
 var evilClue = require("./evilClue");
@@ -34,14 +34,14 @@ PeripheralManager.start(
 function log(ws, event) {
 	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
 
-	if(event.event == "switchViews" && gameState.evilClueActive) {
-		evilClue.view(gameState.evilClueState, event.newView);
+	if(event.event == "switchViews" && gameState.evilClue.active) {
+		evilClue.view(gameState.evilClue, event.newView);
 	}
 }
 
 function castSpell(ws, event) {
 	if(event.spell == "pande") {
-		if(gameState.evilClueActive) {
+		if(gameState.evilClue.active) {
 			evilClue.reveal(ws);
 		}
 	} else {
