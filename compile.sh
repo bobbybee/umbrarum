@@ -10,6 +10,7 @@ mkdir a.out/css/
 html-minifier portal/index.html --remove-comments --remove-comments-from-cdata --collapse-whitespace --remove-attribute-quotes --remove-redundant-attributes --use-short-doctype --remove-empty-attributes  --remove-optional-tags --remove-empty-elements --minify-js --minify-css > a.out/index.html
 uglifyjs portal/js/client.js --screw-ie8 --mangle --compress --lint -o a.out/js/client.js
 uglifyjs portal/js/portal.js --screw-ie8 --mangle --compress --lint -o a.out/js/portal.js
+uglifyjs portal/js/viewmanager.js --screw-ie8 --mangle --compress --lint -o a.out/js/viewmanager.js
 cleancss -o a.out/css/style.css portal/css/style.css
 # cleancss -o a.out/css/reset.css portal/css/reset.css # is this used anywhere?
 
