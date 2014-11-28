@@ -31,7 +31,7 @@ function log(ws, event) {
 }
 
 var peripherals = {
-	evilClue: new Buffer(0)
+	evilClue: null
 }
 
 // evil clue
@@ -47,20 +47,7 @@ net.createServer(function(conn) {
 }).listen(1234);
 
 function castSpell(ws, event) {
-	peripherals.evilClue.write(event.spell);
-
-	if(event.spell == "open sesame") {
-		return {
-			'type': 'spell',
-			'success': false,
-			'info': 'If you are trying to cheat, you really ought to try harder.'
-		};
-	} else if(event.spell == "illustra") {
-		//spellLED.write('1');
-	} else if(event.spell == "exstingue") {
-		if(gameState.evilClueActive)
-			peripherals.evilClue.write('\x0C\x11\x80');
-	} else if(event.spell == "pande") {
+	if(event.spell == "pande") {
 		if(gameState.evilClueActive) {
 			peripherals.evilClue.write('\x0C\x11\x80');
 			peripherals.evilClue.write("OK, master :)");
@@ -69,6 +56,7 @@ function castSpell(ws, event) {
 				peripherals.evilClue.write('\x0C\x11\x80');
 				peripherals.evilClue.write("Venefici, summon");
 				setTimeout(function() {
+					peripherals.evilClue.write("\x94----Clue sent");
 					ws.send(JSON.stringify({
 						'type': 'newClue',
 						'text': 'Lorem ipsum dolor sit amet'

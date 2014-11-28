@@ -1,16 +1,19 @@
-#include <SoftwareSerial.h>
+  #include <SoftwareSerial.h>
 #include <SPI.h>
 #include <Ethernet.h>
 
-byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-IPAddress ip(10, 0, 1, 177);
-IPAddress server(10, 0, 1, 9);
+byte mac[] = {0xDA, 0xED, 0xBF, 0x7F, 0xFE, 0xED };
+IPAddress ip(192, 168, 1, 178);
+IPAddress server(192, 168, 1, 14);
 EthernetClient client;
 
 SoftwareSerial mySerial(2, 3);
 
 void setup() {
-   mySerial.begin(19200);
+   pinMode(9, OUTPUT);
+  
+    Serial.begin(9600);
+   mySerial.begin(9600);
    delay(1000);
    mySerial.write(12);
    mySerial.write(17);
@@ -25,6 +28,17 @@ void setup() {
 void loop() {
   if(client.available()) {
      char c = client.read();
+     
+     unsigned short i = 1000;
+     while(i--) {
+         digitalWrite(9, HIGH);
+         delayMicroseconds(25);
+         digitalWrite(9, LOW);
+         delayMicroseconds(25); 
+     }
+     
      mySerial.write(c);
+         Serial.write(c);
+
   }
 }

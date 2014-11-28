@@ -64,6 +64,34 @@ window.onload = function() {
 	globals.socket.connect();
 
 	globals.logger = new Logger(globals.socket);
+
+	if('webkitSpeechRecognition' in window) {
+		// enable experimental speech recognition for casting spells in supporting browsers
+		// that is, recent versions of Google Chrome, and possibly Android
+		globals.recognition = new webkitSpeechRecognition();
+		globals.lang = 'la'; // set the recognition language to Latin
+
+		globals.recognition.onstart = function() {
+
+		};
+
+		globals.recognition.onresult = function(event) {
+			var result = "";
+			for(var i = event.resultIndex; i < event.results.length; ++i) {
+				if(event.results[i].isFinal) {
+					result += event.results[i][0].transcript;
+				}
+			}
+
+			if(result.length) {
+				console.info(result);
+			}
+		};
+
+		globals.recognition.onerror = function() {
+
+		};
+	}
 }
 
 function castSpell(spell) {
