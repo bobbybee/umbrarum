@@ -11,7 +11,6 @@ SoftwareSerial mySerial(2, 3);
 void setup() {
    pinMode(9, OUTPUT);
   
-    Serial.begin(9600);
    mySerial.begin(9600);
    delay(1000);
    mySerial.write(12);
@@ -21,6 +20,7 @@ void setup() {
    Ethernet.begin(mac); // DHCP configuration
    delay(1000);
    client.connect(server, 1234);
+   client.println("evil clue");
 }
 
 
@@ -37,7 +37,6 @@ void loop() {
      }
      
      mySerial.write(c);
-         Serial.write(c);
 
   }
 }
