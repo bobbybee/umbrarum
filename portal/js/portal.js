@@ -29,16 +29,12 @@ ViewManager.prototype.getViewDiv = function(id) {
 
 ViewManager.prototype.hideView = function(view) {
 	var div = this.getViewDiv(view);
-    setTimeout(function(){
-        div.style.display = 'none';
-    }, 500);
+    div.style.display = 'none';
 }
 
 ViewManager.prototype.showView = function(view) {
 	var div = this.getViewDiv(view);
-    setTimeout(function(){
-        div.style.display = 'block';
-    }, 500);
+    div.style.display = 'block';
 }
 
 function Logger(ws) {

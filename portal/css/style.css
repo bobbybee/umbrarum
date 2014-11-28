@@ -37,7 +37,7 @@ p {
     padding: 0 20px 20px 20px;
 }
 #spell {
-    width: calc(100% - 70px);
+    width: calc(100% - 120px);
 }
 
 #return {
@@ -45,5 +45,6 @@ p {
 }
 
 #cast-spell {
-    width: 66px;
+    width: 60px;
+    right: ;
 }
