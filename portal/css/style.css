@@ -1,0 +1,49 @@
+@import url(reset.css);
+
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Roboto:400,400italic,700,100italic,100);
+
+body {
+    background: #eee;
+}
+
+* {
+    font-family: "Roboto";
+}
+
+div {
+    width: 400px;
+    position: relative;
+    overflow: hidden;
+    margin: 0px auto;
+    background: #777;
+    color: #fff;
+    text-align: center;
+    transition: width 0.5s ease-in-out;
+}
+
+img {
+    position: relative;
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+h1 {
+    padding: 20px;
+    font-size: 2em;
+    font-family: "Source Code Pro";
+}
+
+p {
+    padding: 0 20px 20px 20px;
+}
+#spell {
+    width: calc(100% - 70px);
+}
+
+#return {
+    width: 100%;
+}
+
+#cast-spell {
+    width: 66px;
+}

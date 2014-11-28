@@ -31,7 +31,7 @@ function log(ws, event) {
 }
 
 var peripherals = {
-
+	evilClue: new Buffer(0)
 }
 
 // evil clue

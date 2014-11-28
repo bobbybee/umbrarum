@@ -23,16 +23,24 @@ ViewManager.prototype.switchViews = function(newView) {
 	}
 }
 
-ViewManager.prototype.getViewDiv = function(view) {
-	return document.getElementById('view '+view);
+ViewManager.prototype.getViewDiv = function(id) {
+	return document.getElementById(id);
 }
 
 ViewManager.prototype.hideView = function(view) {
-	this.getViewDiv(view).style.display = 'none';
+	var div = this.getViewDiv(view);
+    move(div).set('width', 0).end();
+    setTimeout(function(){
+        div.style.display = 'none';
+    }, 500);
 }
 
 ViewManager.prototype.showView = function(view) {
-	this.getViewDiv(view).style.display = 'block';
+	var div = this.getViewDiv(view);
+    move(div).set('width', 400).end();
+    setTimeout(function(){
+        div.style.display = 'block';
+    }, 500);
 }
 
 function Logger(ws) {
