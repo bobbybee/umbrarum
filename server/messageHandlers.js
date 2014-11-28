@@ -69,6 +69,7 @@ function castSpell(ws, event) {
 				peripherals.evilClue.write('\x0C\x11\x80');
 				peripherals.evilClue.write("Venefici, summon");
 				setTimeout(function() {
+					peripherals.evilClue.write("\x94----Clue sent");
 					ws.send(JSON.stringify({
 						'type': 'newClue',
 						'text': 'Lorem ipsum dolor sit amet'
