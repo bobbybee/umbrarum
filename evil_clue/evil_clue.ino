@@ -1,10 +1,9 @@
-  #include <SoftwareSerial.h>
+#include <SoftwareSerial.h>
 #include <SPI.h>
 #include <Ethernet.h>
 
 byte mac[] = {0xDA, 0xED, 0xBF, 0x7F, 0xFE, 0xED };
-IPAddress ip(192, 168, 1, 178);
-IPAddress server(192, 168, 1, 14);
+char server[] = "184.153.184.113";
 EthernetClient client;
 
 SoftwareSerial mySerial(2, 3);
@@ -19,7 +18,7 @@ void setup() {
    mySerial.write(17);
    mySerial.write(128);
    
-   Ethernet.begin(mac, ip);
+   Ethernet.begin(mac); // DHCP configuration
    delay(1000);
    client.connect(server, 1234);
 }
