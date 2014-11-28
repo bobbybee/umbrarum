@@ -6,7 +6,7 @@ var peripheralSkeleton = {};
 // value: (potentially anonymous) function for ondata
 // stateless protocol; peripheral manager only cares about the handshaking
 
-function PeripheralManager(skeleton, port) {
+function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 	peripheralSkeleton = skeleton;
 
 	net.createServer(function(conn) {
@@ -30,14 +30,22 @@ function PeripheralManager(skeleton, port) {
 				}
 
 				connectedPeripherals[peripheralType] = conn;
+				onconnect(peripheralType, conn);
 			}
 		});
 
 		conn.on('close', function() {
-			// TODO: dispatch an event
 			connectedPeripherals[peripheralType] = null;
+			onDisconnect(peripheralType);
 		});
 	}).listen(port);
 }
 
-module.exports = PeripheralManager;
+module.exports.start = PeripheralManager;
+module.exports.send = function(target, message) {
+	if(connectedPeripherals[target]) {
+		connectedPeripherals[target].write(message);
+	} else {
+		console.error("Attempted to send message "+message+" to non-connected or unknown peripheral "+target);
+	}
+};
