@@ -35,7 +35,7 @@ function log(ws, event) {
 	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
 
 	if(event.event == "switchViews" && gameState.evilClueActive) {
-		evilClue.view(event.newView);
+		evilClue.view(gameState.evilClueState, event.newView);
 	}
 }
 

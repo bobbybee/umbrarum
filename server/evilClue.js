@@ -1,15 +1,17 @@
+var PeripheralManager = require("./PeripheralManager");
+
 module.exports = {
-	view: function(newView) {
-		if(gameState.evilClueState.currentState == 0) {
-			gameState.evilClueState.currentState++;
+	view: function(state, newView) {
+		if(state.currentState == 0) {
+			state.currentState++;
 			PeripheralManager.write("evil clue","\x0C\x11\x80");
 			PeripheralManager.write("evil clue","Can't enchant me");
 			PeripheralManager.write("evil clue","\x94Don't waste time");
-		} else if(gameState.evilClueState.currentState == 1 && newView == "wand") {
+		} else if(state.currentState == 1 && newView == "wand") {
 			PeripheralManager.write("evil clue","\x0C\x11\x80");
 			PeripheralManager.write("evil clue","Authorization...");
 			PeripheralManager.write("evil clue","\x94DENIED! Go away.");
-			gameState.evilClueState.currentState++;
+			state.currentState++;
 		}
 	},
 	reveal: function(ws) {
