@@ -30,27 +30,27 @@ PeripheralManager.start(
 	}
 )
 
-function ping(ws, event) {
-	return {
-		'type': 'pong'
+function log(ws, event) {
+	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
+
+	if(event.event == "switchViews" && gameState.evilClueActive) {
+		evilClueView(event.newView);
 	}
 }
 
-function log(ws, event) {
-	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
-	if(event.event == "switchViews" && gameState.evilClueActive) {
-		if(gameState.evilClueState.currentState == 0) {
-			gameState.evilClueState.currentState++;
-			PeripheralManager.write("evil clue","\x0C\x11\x80");
-			PeripheralManager.write("evil clue","Can't enchant me");
-			PeripheralManager.write("evil clue","\x94Don't waste time");
-		} else if(gameState.evilClueState.currentState == 1 && event.newView == "wand") {
-			PeripheralManager.write("evil clue","\x0C\x11\x80");
-			PeripheralManager.write("evil clue","Authorization...");
-			PeripheralManager.write("evil clue","\x94DENIED! Go away.");
-			gameState.evilClueState.currentState++;
-		}
+function evilClueView(newView) {
+	if(gameState.evilClueState.currentState == 0) {
+		gameState.evilClueState.currentState++;
+		PeripheralManager.write("evil clue","\x0C\x11\x80");
+		PeripheralManager.write("evil clue","Can't enchant me");
+		PeripheralManager.write("evil clue","\x94Don't waste time");
+	} else if(gameState.evilClueState.currentState == 1 && newView == "wand") {
+		PeripheralManager.write("evil clue","\x0C\x11\x80");
+		PeripheralManager.write("evil clue","Authorization...");
+		PeripheralManager.write("evil clue","\x94DENIED! Go away.");
+		gameState.evilClueState.currentState++;
 	}
+
 }
 
 function castSpell(ws, event) {
@@ -81,7 +81,6 @@ function castSpell(ws, event) {
 }
 
 module.exports = {
-	'ping': ping,
 	'log': log,
 	'castSpell': castSpell
 }
