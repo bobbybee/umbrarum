@@ -2,7 +2,7 @@ project outline (chronological order)
 ===============================
 
 1. impress *Liberators* with cool magic (real technology)
-  * _see [ideas](https://github.com/bobbybee/umbrarum/blob/master/ideas/clue-ideas.md#irl)_
+  * _see [ideas](https://github.com/bobbybee/umbrarum/blob/master/ideas/clues-ideas.md)_
     1. **locker trick** (capactive sensing, maybe in another/a different format?)
     2. maybe a **QR code**? (is it magic enough? could be magical if it is found in a magical way, e.g. projected on teacher's projecter via AirPlay)
     3. **Makey Makey** with graphite on a paper, all circuits and wires as hidden as possible (circuit board can't be blatantly obvious)
