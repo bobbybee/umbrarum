@@ -15,3 +15,7 @@ project outline (chronological order)
   * have a virtual "cmd prompt" in website to cast "spells" that cause physical things to happen almost instantaneously ("cmd prompt" => **"magic wand"** or something)
    * e.g. connect motor interfaces or actuators to a server, virtual cmd prompt on website sends signals over a websocket to that server to control interfaces (i.e motors, etc.)
 3. lead the _Liberators_ to a place where they supposedly cause something magical to happen at their will
+4. One of us turns on the other, starting up a large conspiracy about whether there is magic in the school or whether it was made up to make the turned-on more popular. Liberators are torn in half.
+5. Teach the Liberators our tricks.
+6. Finale is a competition where Liberators need to use our infrastructure to create new magic, on there own.
+7. The winner becomes a V.B.
