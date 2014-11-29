@@ -75,7 +75,7 @@ function newClue(event) {
 }
 
 function register(name, message) {
-	global.socket.send({
+	globals.socket.send({
 		type: "register",
 		name: name,
 		message: message
