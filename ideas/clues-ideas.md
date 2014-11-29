@@ -1,7 +1,7 @@
 ideas for clues
 =================
 
-_Note:  All clues should start IRL, but they can go into the internet._
+_Note:  Clues will alternate between complicated IRL puzzles / experiences, and traditional, poem F8C7A6-style clues_
 
 ## IRL
 
