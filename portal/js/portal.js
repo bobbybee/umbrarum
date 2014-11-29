@@ -14,6 +14,7 @@ window.onload = function() {
 	globals.socket = new WSClient(globals.host, globals.port);
 	globals.socket.spell = spellResult;
 	globals.socket.newClue = newClue;
+	globals.socket.registered = registered;
 
 	globals.socket.onopen = function() {
 		globals.logger.log({
@@ -80,4 +81,8 @@ function register(name, message) {
 		name: name,
 		message: message
 	})
+}
+
+function registered(event) {
+	alert("Thank you. The venēficī umbrārum have been notified, and you will be eligible to join the liberation soon");
 }
