@@ -40,6 +40,11 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 			connectedPeripherals[peripheralType] = null;
 			onDisconnect(peripheralType);
 		});
+
+		conn.on('error', function() {
+			connectedPeripherals[peripheralType] = null;
+			onDisconnect(peripheralType);
+		});
 	}).listen(port);
 }
 
