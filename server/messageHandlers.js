@@ -8,6 +8,7 @@ var gameState = {
 };
 
 var evilClue = require("./evilClue");
+var register = require("./register");
 
 var PeripheralManager = require("./PeripheralManager");
 
@@ -55,5 +56,6 @@ function castSpell(ws, event) {
 
 module.exports = {
 	'log': log,
-	'castSpell': castSpell
+	'castSpell': castSpell,
+	'register': register
 }
