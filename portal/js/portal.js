@@ -30,10 +30,10 @@ window.onload = function() {
 		// enable experimental speech recognition for casting spells in supporting browsers
 		// that is, recent versions of Google Chrome, and possibly Android
 		globals.recognition = new webkitSpeechRecognition();
-		globals.lang = 'la'; // set the recognition language to Latin
+		globals.recognition.lang = 'la'; // set the recognition language to Latin
 
 		globals.recognition.onstart = function() {
-
+			alert('start');
 		};
 
 		globals.recognition.onresult = function(event) {
@@ -72,4 +72,12 @@ function spellResult(event) {
 
 function newClue(event) {
 	alert("New clue! "+event.text);
+}
+
+function register(name, message) {
+	global.socket.send({
+		type: "register",
+		name: name,
+		message: message
+	})
 }
