@@ -48,3 +48,8 @@ p {
     width: 60px;
     margin-left: 10px;
 }
+
+.link, a {
+    color: #BBBBFF;
+    text-decoration: underline;
+}
