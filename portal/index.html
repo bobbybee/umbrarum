@@ -16,7 +16,7 @@ Please use your best code practices; the final website is going to be minified. 
 	<!-- import JavaScript + CSS !-->
 	<script>
 		var globals = {
-			defaultView: "main",
+			defaultView: window.location.hash.length ? window.location.hash.slice(1).split(".")[0] : "main",
 			views: ["main", "wand", "register"],
 
 			host: "umbrarum.com",
@@ -70,6 +70,10 @@ Please use your best code practices; the final website is going to be minified. 
         <p>
         	<input id="return" type="submit" onclick="globals.viewManager.switchViews('main')" value="Return to Portal Lobby"/>
         </p>
+	</div>
+
+	<div class="view" id="resource">
+
 	</div>
 
 </body>

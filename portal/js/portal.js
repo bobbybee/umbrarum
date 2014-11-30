@@ -15,8 +15,13 @@ window.onload = function() {
 	globals.socket.spell = spellResult;
 	globals.socket.newClue = newClue;
 	globals.socket.registered = registered;
+	globals.socket.resource = resource;
 
 	globals.socket.onopen = function() {
+		if(window.location.hash.split(".")[0] == "#resource") {
+			fetchResource(window.location.hash.split(".")[1]); // preload resource at page start
+		}
+
 		globals.logger.log({
 			event: "switchViews",
 			newView: globals.defaultView
@@ -85,4 +90,15 @@ function register(name, message) {
 
 function registered(event) {
 	alert("Thank you. The venēficī umbrārum have been notified, and you will be eligible to join the liberation soon");
+}
+
+function fetchResource(rsrc) {
+	globals.socket.send({
+		type: "resource",
+		uuid: rsrc
+	})
+}
+
+function resource(event) {
+	document.getElementById("resource").innerHTML = event.content;
 }
