@@ -9,6 +9,7 @@ var evilClue = require("./evilClue");
 var register = require("./register");
 
 var PeripheralManager = require("./PeripheralManager");
+var ResourceManager = require("./ResourceManager");
 
 PeripheralManager.start(
 	{ // skeleton
@@ -57,8 +58,27 @@ function castSpell(ws, event) {
 	}
 }
 
+function resource(ws, event) {
+	var rsrc = ResourceManager.get(event.uuid);
+
+	if(rsrc) {
+		return {
+			'type': 'resource',
+			'uuid': event.uuid,
+			'content': rsrc
+		};
+	} else {
+		return {
+			'type': 'resource',
+			'uuid': null,
+			'content': null
+		}
+	}
+}
+
 module.exports = {
 	'log': log,
 	'castSpell': castSpell,
-	'register': register
+	'register': register,
+	'resource': resource
 }
