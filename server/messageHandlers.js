@@ -1,8 +1,6 @@
-var net = require('net');
-
 var gameState = {
 	evilClue: {
-		active: true,
+		active: false,
 		currentState: 0
 	},
 };
