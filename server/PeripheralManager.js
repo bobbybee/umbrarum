@@ -33,6 +33,7 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 				connectedPeripherals[peripheralType] = conn;
 				onConnect(peripheralType, conn);
 				hasHandshaked = true;
+				console.log(peripheralType+" connected!");
 			}
 		});
 

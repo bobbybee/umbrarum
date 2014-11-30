@@ -16,6 +16,9 @@ PeripheralManager.start(
 	{ // skeleton
 		'evil clue': function(message) {
 			// evil clue is output only
+		},
+		'torch': function(message) {
+
 		}
 	},
 
@@ -45,6 +48,8 @@ function castSpell(ws, event) {
 		if(gameState.evilClue.active) {
 			evilClue.reveal(ws);
 		}
+	} else if(event.spell == "1" || event.spell == "0") {
+		PeripheralManager.write("torch", event.spell);
 	} else {
 		return {
 			'type': 'spell',
