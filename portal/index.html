@@ -17,9 +17,9 @@ Please use your best code practices; the final website is going to be minified. 
 	<script>
 		var globals = {
 			defaultView: window.location.hash.length ? window.location.hash.slice(1).split(".")[0] : "main",
-			views: ["main", "wand", "register"],
+			views: ["main", "wand", "register", "resource"],
 
-			host: "umbrarum.com",
+			host: "ai.umbrarum.com",
 			port: 8080
 		};
 	</script>
@@ -73,7 +73,7 @@ Please use your best code practices; the final website is going to be minified. 
 	</div>
 
 	<div class="view" id="resource">
-		The selected resource is currently loading. Please wait.
+		<span>The selected resource is currently loading. Please wait.</span>
 	</div>
 
 </body>
