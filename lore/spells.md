@@ -1,5 +1,5 @@
 Spells
 ===============================
 
-pande - Reveals the hidden content of the target
-aperi - Opens a magically sealad device
+* pande - Reveals the hidden content of the target
+* aperi - Opens a magically sealad device
