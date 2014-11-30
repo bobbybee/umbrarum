@@ -1,7 +1,7 @@
+var fs = require('fs');
+
 module.exports = function(ws, event) {
-	console.info("ENROLLMENT REQUEST");
-	console.info("NAME: "+event.name);
-	console.info("ADDITIONAL INFO: "+event.message);
+	fs.appendFile('enrollment.txt', event.name+"\n"+event.message+"\n"+"------"+"\n", function(){});
 
 	return {
 		type: "registered"
