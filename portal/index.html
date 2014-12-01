@@ -8,6 +8,7 @@ Please use your best code practices; the final website is going to be minified. 
 <html>
 <head>
 	<title>Venēficī Umbrārum</title>
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Roboto:400,400italic,700,100italic,100" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 	<!-- allow macrons to display correctly -->
@@ -39,18 +40,17 @@ Please use your best code practices; the final website is going to be minified. 
         <table>
             <tr>
                 <td>
-                    <img class="portal" src="http://placehold.it/300x500/777777/ffffff" onclick="globals.viewManager.switchViews('wand')" alt="Virtual Wand!"/>
+                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('wand')" alt="Virtual Wand!" height="300px"/>
                 </td>
                 <td>
-                    <img class="portal" src="http://placehold.it/300x500/777777/ffffff" onclick="globals.viewManager.switchViews('register')" alt="Become a liberator!"/>
+                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('register')" alt="Become a liberator!" height="300px"/>
                 </td>
             </tr>
         </table>
 	</div>
 
 	<div class="view" id="wand">
-        <h1>
-            Wand</h1>
+        <h2>Wand</h2>
 		<p>
 			<input type="text" id="spell" placeholder="spell"/>
 			<input type="submit" id="cast-spell" onclick="castSpell(document.getElementById('spell').value)" />
@@ -61,12 +61,13 @@ Please use your best code practices; the final website is going to be minified. 
 	</div>
 
 	<div class="view" id="register">
-		<h1>Become a liberator!</h1>
-		<p>Name: <input type="text" id="register-name" placeholder="John Smith"/></p>
-		<p>Message for the venēficī umbrārum: 
-			<textarea id="register-msg" placeholder="I am seeking to enroll in your finest magical courses with the intent of freeing our school."></textarea>
-			<input type="submit" id="do-register" onclick="register(document.getElementById('register-name').value, document.getElementById('register-msg').value)" />
-		</p>
+		<h2>Become a Liberator!</h2>
+		<p>Name: <input type="text" id="register-name" placeholder="Mattias Wright"/></p>
+        <p>Message for the <i>venēficī umbrārum:</i></p>
+        <p>
+            <textarea id="register-msg" placeholder="I am seeking to follow the path to freeing my school."></textarea>
+        </p>
+        <p><input type="submit" id="do-register" onclick="register(document.getElementById('register-name').value, document.getElementById('register-msg').value)" /></p>
         <p>
         	<input id="return" type="submit" onclick="globals.viewManager.switchViews('main')" value="Return to Portal Lobby"/>
         </p>

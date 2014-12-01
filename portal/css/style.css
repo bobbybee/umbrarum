@@ -1,7 +1,5 @@
 @import url(reset.css);
 
-@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Roboto:400,400italic,700,100italic,100);
-
 body {
     background: #eee;
 }
@@ -25,12 +23,25 @@ img {
     position: relative;
     width: 95%;
     margin-left: 2.5%;
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+img:hover {
+    opacity: 1;        
+}
+
+h1, h2 {
+    padding: 20px;
+    font-family: "Source Code Pro";
 }
 
 h1 {
-    padding: 20px;
     font-size: 2em;
-    font-family: "Source Code Pro";
+}
+
+h2 {
+    font-size: 1.85em;
 }
 
 p {
@@ -42,7 +53,7 @@ p {
     width: calc(100% - 120px);
 }
 
-#return {
+#return, #register-msg, #do-register {
     width: 100%;
 }
 
@@ -54,4 +65,17 @@ p {
 .link, a {
     color: #BBBBFF;
     text-decoration: underline;
+}
+textarea, input[type="text"] {
+    outline: none;
+    resize: none;
+}
+
+#register-name {
+    margin-left: 1em;
+    width: 200px;
+}
+
+i {
+    font-style: italic;
 }
