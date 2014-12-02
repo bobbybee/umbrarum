@@ -1,0 +1,26 @@
+{
+  "name": "umbrarumChat",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "author": "jczimm & bobbybee",
+  "license": "MIT",
+  "dependencies": {
+    "emoji-images": "^0.1.1",
+    "express": "^4.8.6",
+    "http-auth": "^2.1.9",
+    "markdown": "^0.5.0",
+    "retext": "^0.1.1",
+    "retext-smartypants": "^0.1.0",
+    "socket.io": "^1.0.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^3.0.0"
+  }
+}
