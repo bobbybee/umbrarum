@@ -1,6 +1,6 @@
 var gameState = {
 	evilClue: {
-		active: false,
+		active: true,
 		currentState: 0
 	},
 };

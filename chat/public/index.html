@@ -85,7 +85,7 @@
                     if (cb) cb();
                     init();
                 } else if (res === "bad username") {
-                    promptUsername("Username already taken.\n", function() {
+                    promptUsername("Username already taken or invalid (may only contain alphanumeric characters, spaces, -, and _).\n", function() {
                         tryjoin(cb);
                     });
                 } else {

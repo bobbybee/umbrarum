@@ -30,15 +30,15 @@ Server.on('connection', function(client) {
     });
 
     client.on('join', function(obj, callback) {
-        username = obj.username;
+        username = obj.username; 
+
         console.log(ip + " chose username \"" + username + "\"");
-        if (!users.contains(username)) {
+        if (!users.contains(username) && /^[\w\-\s]+$/.test(username)) {
             users.push(username);
 
             origins[username] = {};
             origins[username]["ip"] = ip;
             origins[username]["time_offset"] = obj.time_offset;
-
 
             console.log(ip + " chose a good username");
             callback('good username');
