@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Umbrarum Chat</title>
+    <base target="_blank">
+    <link href="src/style.css" rel="stylesheet">
+    <script src='src/js/prefixfree.min.js'></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700|Anonymous+Pro' type="text/css" rel='stylesheet'>
+</head>
+
+<body>
+    <table id="online">
+        <tr></tr>
+    </table>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" />
+        <button>Send</button>
+    </form>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script>
+    var time_offset = (function() {
+        var rightNow = new Date();
+        var june1 = new Date(rightNow.getFullYear(), 6, 1, 0, 0, 0, 0);
+        var temp = june1.toGMTString();
+        var june2 = new Date(temp.substring(0, temp.lastIndexOf(" ") - 1));
+        return (june1 - june2) / (1000 * 60 * 60);
+    })();
+
+    var dateFormat = "HH:mm";
+
+    var submit = function() {};
+    var socket = io();
+    $("form").submit(function() {
+        submit();
+
+        return false;
+    });
+
+    var user;
+    promptUsername(undefined, function() {
+        $("#m").focus();
+        socket.emit('get old stuff', function(obj) {
+            var lastMessages = obj.cache;
+            if (lastMessages) {
+                lastMessages.forEach(function(obj) {
+                    if (obj) displayMessage(obj);
+                });
+            }
+
+            var online = obj.users;
+            if (online[0]) {
+                online.forEach(function(user) {
+                    displayUser(user);
+                });
+            }
+
+            tryjoin();
+        });
+    });
+
+
+    function promptUsername(prefix, cb) {
+        prefix = prefix || "";
+
+        user = prompt(prefix + "User: ");
+
+        if (user === null || user === "") {
+            status('You must have a username.  Reload page to enter a username.');
+        } else if (cb) cb();
+    }
+
+    function tryjoin(cb) {
+        socket.emit("join", {
+                username: user,
+                time_offset: time_offset
+            },
+            function(res) {
+                if (res === "good username") {
+                    if (cb) cb();
+                    init();
+                } else if (res === "bad username") {
+                    promptUsername("Username already taken or invalid (may only contain alphanumeric characters, spaces, -, and _).\n", function() {
+                        tryjoin(cb);
+                    });
+                } else {
+                    // shouldn't ever happen
+                    status('Something went wrong... Reload page to try again.');
+                }
+            });
+    }
+
+    function init() {
+        submit = function() {
+            var m = $("#m").val();
+            if (m !== "") {
+                socket.emit("chat message", {
+                    msg: m,
+                    user: user
+                });
+                $("#m").val("");
+            }
+        };
+    }
+
+    function status(s, bool) {
+        if (bool === undefined) bool = true;
+        $("#m")
+            .prop('disabled', bool)
+            .val(s);
+    }
+
+    function displayMessage(obj) {
+        var gotAt = new Date(obj.utc_ts);
+        gotAt.setHours(gotAt.getHours() + time_offset);
+        gotAt = moment(gotAt).format(dateFormat);
+
+        var sentAt = (function() {
+            var sent = new Date(obj.utc_ts);
+            sent.setHours(sent.getHours() + obj.sender_offset);
+            return moment(sent).format(dateFormat);
+        })();
+
+        $("#messages").append(
+            "<li><b>" +
+            obj.user +
+            "</b><span class='msg'>" +
+            obj.msg +
+            "</span><span class='date'>" +
+            gotAt
+            /*+
+            "<i title='local time of sender'>(" +
+            sentAt*/
+            + "</span></li>"
+        );
+
+
+        // TODO: don't scroll if distance from bottom > $(window).height()
+        $('html, body').finish();
+        $('html, body').animate({
+            scrollTop: $(document).height()
+        }, 500);
+    }
+
+    socket.on("chat message", function(obj) {
+        displayMessage(obj);
+    });
+
+    socket.on("new user", function(obj) {
+        displayUser(obj.user);
+    });
+
+    socket.on("gone user", function(obj) {
+        $("#online tr td").each(function() {
+            if ($(this).text() === obj.user)
+                $(this).remove();
+            return;
+        });
+    });
+
+
+    socket.on("disconnect", function() {
+        if (user !== null) {
+            status("Reconnecting to server...");
+        }
+    });
+
+    socket.on("reconnect", function() {
+        if (user !== null) {
+            tryjoin(function() {
+                status("", false);
+            });
+        }
+    });
+
+    function displayUser(user) {
+        $("<td/>")
+            .text(user)
+            .appendTo("#online tr");
+    }
+    </script>
+
+</body>
+
+</html>

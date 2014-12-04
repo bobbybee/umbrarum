@@ -1,6 +1,8 @@
+var dns = require('dns');
+
 var gameState = {
 	evilClue: {
-		active: false,
+		active: true,
 		currentState: 0
 	},
 };
@@ -32,14 +34,22 @@ PeripheralManager.start(
 	function(type) { // onDisconnect
 
 	}
-)
+);
 
 function log(ws, event) {
-	console.log("[ LOG ] ("+ws.logID+"): "+JSON.stringify(event));
+	dns.reverse(ws.logIP, function(err, domains) {
 
-	if(event.event == "switchViews" && gameState.evilClue.active) {
-		evilClue.view(gameState.evilClue, event.newView);
-	}
+							// not available
+		var hosts = ", " + (err ? "n.a." : domains.join(','));
+
+		// ok to use eval here because it's just removing extra ""
+		console.log("[ "+eval(JSON.stringify(new Date))+" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
+
+		if(event.event == "switchViews" && gameState.evilClue.active) {
+			evilClue.view(gameState.evilClue, event.newView);
+		}
+
+	});
 }
 
 function castSpell(ws, event) {

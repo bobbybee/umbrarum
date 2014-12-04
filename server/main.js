@@ -25,6 +25,7 @@ wss.on('connection', function(ws) {
 		}
 	})
 
-	ws.logID = ws._socket.remoteAddress+":"+ws._socket.remotePort;
+	ws.logIP = ws._socket.remoteAddress;
+	ws.logID = ws.logIP+":"+ws._socket.remotePort;
 	console.log("Hello");
 });
