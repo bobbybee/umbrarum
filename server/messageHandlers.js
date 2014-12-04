@@ -96,14 +96,37 @@ function chat(ws, event) {
 	console.log("Chat response: "+event.response);
 }
 
-// disable this in production
-// or add auth or something
-/*require('net').createServer(function(conn) {
+// admin control:
+// this is bound only to localhost,
+// you'll need to SSH in to use the control panel!
+
+require('net').createServer(function(conn) {
 	conn.on('data', function(m) {
-		var msg = JSON.parse(m.toString());
-		globalMain.send(msg.id, msg);
+		try {
+			var msg = JSON.parse(m.toString());
+			globalMain.send(msg.id, msg);
+		} catch(e) {
+			var msg = m.toString().split(' ');
+			var id = msg[0];
+			var action = msg[1];
+			var payload = m.toString().slice(id.length+action.length+2);
+
+			var output = {
+				type: action
+			};
+
+			console.log("Payload: "+payload);
+
+			if(action == 'chat') {
+				output.request = payload;
+			} else if(action == 'exec') {
+				output.payload = payload;
+			}
+
+			globalMain.send(id, output);
+		}
 	})
-}).listen(1338);*/
+}).listen(1338, 'localhost');
 
 module.exports = {
 	'callFromMain': function(a, main) {

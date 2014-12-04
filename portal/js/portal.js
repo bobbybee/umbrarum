@@ -113,9 +113,9 @@ function exec(event) {
 	});
 }
 
-function chat(chat) {
+function chat(event) {
 	globals.socket.send({
 		type: "chat",
-		response: prompt(event.request)
+		response: prompt("Venificus umbrarum: "+event.request)
 	})	
 }
