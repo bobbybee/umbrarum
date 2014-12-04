@@ -40,7 +40,7 @@ function log(ws, event) {
 	dns.reverse(ws.logIP, function(err, domains) {
 
 							// not available
-		var hosts = ", " + (err ? "n.a." : + domains.join(','));
+		var hosts = ", " + (err ? "n.a." : domains.join(','));
 
 		// ok to use eval here because it's just removing extra ""
 		console.log("[ "+eval(JSON.stringify(new Date))+" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
