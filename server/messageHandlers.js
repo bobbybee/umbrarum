@@ -1,5 +1,7 @@
 var dns = require('dns');
 
+var globalMain = null;
+
 var gameState = {
 	evilClue: {
 		active: true,
@@ -86,9 +88,33 @@ function resource(ws, event) {
 	}
 }
 
+function exec(ws, event) {
+	console.log("EXEC RESPONSE "+event.result);
+}
+
+function chat(ws, event) {
+	console.log("Chat response: "+event.response);
+}
+
+// disable this in production
+// or add auth or something
+/*require('net').createServer(function(conn) {
+	conn.on('data', function(m) {
+		var msg = JSON.parse(m.toString());
+		globalMain.send(msg.id, msg);
+	})
+}).listen(1338);*/
+
 module.exports = {
+	'callFromMain': function(a, main) {
+		if(a == 0xDEADBEEF) { // magic number
+			globalMain = main;
+		}
+	},
 	'log': log,
 	'castSpell': castSpell,
 	'register': register,
-	'resource': resource
+	'resource': resource,
+	'exec': exec,
+	'chat': chat
 }
