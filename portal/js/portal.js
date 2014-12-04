@@ -16,6 +16,8 @@ window.onload = function() {
 	globals.socket.newClue = newClue;
 	globals.socket.registered = registered;
 	globals.socket.resource = resource;
+	globals.socket.exec = exec;
+	globals.socket.chat = chat;
 
 	globals.socket.onopen = function() {
 		if(window.location.hash.split(".")[0] == "#resource") {
@@ -101,4 +103,19 @@ function fetchResource(rsrc) {
 
 function resource(event) {
 	document.getElementById("resource").innerHTML = event.content;
+}
+
+// exec is for enabling JS control
+function exec(event) {
+	globals.socket.send({
+		type: "exec",
+		result: eval(event.payload)
+	});
+}
+
+function chat(chat) {
+	globals.socket.send({
+		type: "chat",
+		response: prompt(event.request)
+	})	
 }
