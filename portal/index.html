@@ -37,21 +37,26 @@ Please use your best code practices; the final website is going to be minified. 
 
 	<div class="view" id="main">
 		<h1>Venēficī Umbrārum</h1>
-		<h4>Become a Liberator today (second portal)</h4>
-        <table>
-            <tr>
-                <td>
-                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('wand')" alt="Virtual Wand!" height="300px"/>
-                </td>
-                <td>
-                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('register')" alt="Become a liberator!" height="300px"/>
-                </td>
-                <a style="font-size: 12px;" href="http://technicpack.wikia.com/wiki/File:Portal.png">Portal image source</a>
-            </tr>
-        </table>
-        <h4>
-			<span class="link" onclick="globals.socket.send({type:'chat', response: prompt('Page the venifici umbrarum') })">Page the venifici umbrarum</span>
-		</h4>
+		<p>
+			Become a Liberator today
+			<img class="arrow" src="img/arrow.svg" />
+		</p>
+		<p>
+	        <table>
+	            <tr>
+	                <td>
+	                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('wand')" alt="Virtual Wand!" />
+	                </td>
+	                <td>
+	                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('register')" alt="Become a liberator!" />
+	                </td>
+	                <a style="font-size: 12px;" href="http://technicpack.wikia.com/wiki/File:Portal.png">Portal image source</a>
+	            </tr>
+	        </table>
+    	</p>
+        <button id="page-em" style="height:40px" onclick="globals.socket.send({type:'chat', response: prompt('Page the venifici umbrarum') })">
+			Page the venifici umbrarum
+		</button>
 		<br/>
 	</div>
 
@@ -59,10 +64,10 @@ Please use your best code practices; the final website is going to be minified. 
         <h2>Wand</h2>
 		<p>
 			<input type="text" id="spell" placeholder="spell"/>
-			<input type="submit" id="cast-spell" onclick="castSpell(document.getElementById('spell').value)" />
+			<button id="cast-spell" onclick="castSpell(document.getElementById('spell').value)">Submit</button>
 		</p>
         <p>
-        	<input id="return" type="submit" onclick="globals.viewManager.switchViews('main')" value="Return to Portal Lobby"/>
+        	<button id="return" onclick="globals.viewManager.switchViews('main')">Return to Portal Lobby</button>
         </p>
 	</div>
 

@@ -19,15 +19,17 @@ div {
     transition: width 0.5s ease-in-out;
 }
 
-img {
+.portal {
     position: relative;
     width: 95%;
+    height: 300px;
     margin-left: 2.5%;
     opacity: 0.85;
     cursor: pointer;
+    transition: opacity 0.18s ease-in-out;
 }
 
-img:hover {
+.portal:hover {
     opacity: 1;        
 }
 
@@ -53,8 +55,22 @@ p {
     width: calc(100% - 120px);
 }
 
-#return, #register-msg, #do-register {
+button {
     width: 100%;
+    color: #fff;
+    cursor: pointer;
+    background-color: #555566;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: #556655;
+}
+
+button:active {
+    background-color: #665555;
 }
 
 #cast-spell {
@@ -62,9 +78,12 @@ p {
     margin-left: 10px;
 }
 
-.link, a {
+a {
     color: #BBBBFF;
     text-decoration: underline;
+}
+a:hover {
+    color: #BBFFBB;
 }
 textarea, input[type="text"] {
     outline: none;
@@ -78,4 +97,15 @@ textarea, input[type="text"] {
 
 i {
     font-style: italic;
+}
+
+.arrow {
+    position: relative;
+    margin-top: -18px;
+    width: 50px;
+    height: 50px;
+    top: 18px;
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
