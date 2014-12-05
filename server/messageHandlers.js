@@ -32,7 +32,6 @@ PeripheralManager.start(
 			evilClue.connect();
 		}
 	},
-
 	function(type) { // onDisconnect
 
 	}
@@ -44,8 +43,9 @@ function log(ws, event) {
 							// not available
 		var hosts = ", " + (err ? "n.a." : domains.join(','));
 
+		var date = new Date().toString().replace(/ GMT.*/gi, "");
 		// ok to use eval here because it's just removing extra ""
-		console.log("[ "+ new Date +" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
+		console.log("[ "+ date +" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
 
 		if(event.event == "switchViews" && gameState.evilClue.active) {
 			evilClue.view(gameState.evilClue, event.newView);
