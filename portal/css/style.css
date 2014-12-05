@@ -55,6 +55,10 @@ p {
     width: calc(100% - 120px);
 }
 
+#register-msg {
+    width: 100%;
+}
+
 button {
     width: 100%;
     color: #fff;
