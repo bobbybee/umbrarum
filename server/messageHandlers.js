@@ -45,7 +45,7 @@ function log(ws, event) {
 		var hosts = ", " + (err ? "n.a." : domains.join(','));
 
 		// ok to use eval here because it's just removing extra ""
-		console.log("[ "+eval(JSON.stringify(new Date))+" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
+		console.log("[ "+ new Date +" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
 
 		if(event.event == "switchViews" && gameState.evilClue.active) {
 			evilClue.view(gameState.evilClue, event.newView);
