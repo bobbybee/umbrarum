@@ -20,8 +20,9 @@ window.onload = function() {
 	globals.socket.chat = chat;
 
 	globals.socket.onopen = function() {
-		if(window.location.hash.split(".")[0] == "#resource") {
-			fetchResource(window.location.hash.split(".")[1]); // preload resource at page start
+		var ids = window.location.hash.split(".");
+		if(ids[0] == "#resource") {
+			fetchResource(ids[1]); // preload resource at page start
 		}
 
 		globals.logger.log({
@@ -117,5 +118,17 @@ function chat(event) {
 	globals.socket.send({
 		type: "chat",
 		response: prompt("Venificus umbrarum: "+event.request)
-	})	
+	});
+}
+
+function page() {
+	var msg = prompt('Page the venifici umbrarum');
+
+	if(msg === null && msg === "")
+		return;
+
+    globals.socket.send({
+        type: 'chat',
+        response: msg
+    });
 }

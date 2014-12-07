@@ -1,94 +1,103 @@
 <!-- 
 umbrarum portal
 This is the main and _only_ page on the umbrarum website.
-Please use your best code practices; the final website is going to be minified. HTML comments are easy, just a special tag. Use them!
+Please use your best code practices; the website builds minified. HTML comments are easy, just a special tag. Use them!
 -->
 
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Venēficī Umbrārum - Become a Liberator!</title>
+    <title>Venēficī Umbrārum - Become a Liberator!</title>
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Roboto:400,400italic,700,100italic,100" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-	<!-- allow macrons to display correctly -->
-	<meta charset="UTF-8"/>
+    <!-- allow macrons to display correctly -->
+    <meta charset="UTF-8" />
 
-	<!-- import JavaScript + CSS !-->
-	<script>
-		var globals = {
-			defaultView: window.location.hash.length ? window.location.hash.slice(1).split(".")[0] : "main",
-			views: ["main", "wand", "register", "resource"],
+    <!-- import JavaScript + CSS -->
+    <script>
+    var defaultView =
+        window.location.hash.length ? window.location.hash.slice(1).split(".")[0] : "main";
 
-			host: "ai.umbrarum.com",
-			port: 8080
-		};
-	</script>
-	<script src="js/viewmanager.js"></script>
-	<script src="js/portal.js"></script>
-	<script src="js/client.js"></script>
+    var globals = {
+        defaultView: defaultView,
+        views: ["main", "wand", "register", "resource"],
+
+        host: "ai.umbrarum.com",
+        port: 8080
+    };
+    </script>
+    <script src="js/viewmanager.js"></script>
+    <script src="js/portal.js"></script>
+    <script src="js/client.js"></script>
 </head>
+
 <body>
 
-	<!-- each "page" on the website is represented by a view -->
-	<!-- views are div elements whose id is "view "+viewName -->
-	<!-- also add a declaration of the view in the globals around L27 -->
-	<!-- the JavaScript handles the rest -->
+    <!-- each "page" on the website is represented by a view -->
+    <!-- views are div elements whose id is "view "+viewName -->
+    <!-- also add a declaration of the view in the globals around L27 -->
+    <!-- the JavaScript handles the rest -->
 
-	<div class="view" id="main">
-		<h1>Venēficī Umbrārum</h1>
-		<p>
-			Become a Liberator today
-			<img class="arrow" src="img/arrow.svg" />
-		</p>
-		<p>
-	        <table>
-	            <tr>
-	                <td>
-	                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('wand')" alt="Virtual Wand!" />
-	                </td>
-	                <td>
-	                    <img class="portal" src="http://img2.wikia.nocookie.net/__cb20121110065624/technicpack/images/9/9d/Portal.png" onclick="globals.viewManager.switchViews('register')" alt="Become a liberator!" />
-	                </td>
-	                <a style="font-size: 12px;" href="http://technicpack.wikia.com/wiki/File:Portal.png">Portal image source</a>
-	            </tr>
-	        </table>
-    	</p>
-        <button id="page-em" style="height:40px" onclick="globals.socket.send({type:'chat', response: prompt('Page the venifici umbrarum') })">
-			Page the venifici umbrarum
-		</button>
-		<br/>
-	</div>
-
-	<div class="view" id="wand">
-        <h2>Wand</h2>
-		<p>
-			<input type="text" id="spell" placeholder="spell"/>
-			<button id="cast-spell" onclick="castSpell(document.getElementById('spell').value)">Cast</button>
-		</p>
+    <div class="view" id="main">
+        <h1>Venēficī Umbrārum</h1>
         <p>
-        	<button id="return" onclick="globals.viewManager.switchViews('main')">Return to Portal Lobby</button>
+            Become a Liberator today
+            <img class="arrow" src="img/arrow.svg" />
         </p>
-	</div>
+        <p>
+            <table>
+                <tr>
+                    <td>
+                        <img class="portal" src="img/portal.png" onclick="globals.viewManager.switchViews('wand')" alt="Virtual Wand!" />
+                    </td>
+                    <td>
+                        <img class="portal" src="img/portal.png" onclick="globals.viewManager.switchViews('register')" alt="Become a liberator!" />
+                    </td>
+                    <a style="font-size: 12px;" href="http://technicpack.wikia.com/wiki/File:Portal.png">Portal image source</a>
+                </tr>
+            </table>
+        </p>
+        <button id="page-em" style="height:40px" onclick="page()">
+            Page the venifici umbrarum
+        </button>
+        <br/>
+    </div>
 
-	<div class="view" id="register">
-		<h2>Become a Liberator!</h2>
-		<p>Name: <input type="text" id="register-name" placeholder="Mattias Wright"/></p>
-        <p>Message for the <i>venēficī umbrārum:</i></p>
+    <div class="view" id="wand">
+        <h2>Wand</h2>
+        <p>
+            <input type="text" id="spell" placeholder="spell" />
+            <button id="cast-spell" onclick="castSpell(document.getElementById('spell').value)">Cast</button>
+        </p>
+        <p>
+            <button id="return" onclick="globals.viewManager.switchViews('main')">Return to Portal Lobby</button>
+        </p>
+    </div>
+
+    <div class="view" id="register">
+        <h2>Become a Liberator!</h2>
+        <p>Name:
+            <input type="text" id="register-name" placeholder="Mattias Wright" />
+        </p>
+        <p>Message for the <i>venēficī umbrārum:</i>
+        </p>
         <p>
             <textarea id="register-msg" placeholder="I am seeking to follow the path to freeing my school."></textarea>
         </p>
         <p>
-        	<button id="do-register" onclick="register(document.getElementById('register-name').value, document.getElementById('register-msg').value)">Register</button>
+            <button id="do-register" onclick="register(document.getElementById('register-name').value, document.getElementById('register-msg').value)">Register</button>
         </p>
         <p>
-        	<button id="return" onclick="globals.viewManager.switchViews('main')">Return to Portal Lobby</button>
+            <button id="return" onclick="globals.viewManager.switchViews('main')">Return to Portal Lobby</button>
         </p>
-	</div>
+    </div>
 
-	<div class="view" id="resource">
-		<span>The selected resource is currently loading. Please wait.</span>
-	</div>
+    <div class="view" id="resource">
+        <span>The selected resource is currently loading. Please wait.</span>
+    </div>
 
 </body>
+
 </html>
