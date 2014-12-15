@@ -11,6 +11,8 @@ SoftwareSerial mySerial(2, 3);
 
 void setup() {  
    mySerial.begin(9600);
+   Serial.begin(9600);
+   
    delay(1000);
    mySerial.write(12);
    mySerial.write(17);
@@ -28,6 +30,9 @@ void loop() {
   
   if(client.available()) {
      char c = client.read();
+     
+     Serial.println();
+     Serial.write(c);
           
      mySerial.write(220);
      delay(62);
@@ -36,3 +41,4 @@ void loop() {
 
   }
 }
+

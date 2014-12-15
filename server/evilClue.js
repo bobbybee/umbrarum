@@ -31,7 +31,7 @@ module.exports = {
 		}, 3000);
 	},
 	connect: function() {
-		PeripheralManager.write("evil clue", "I have the clue.");
+		PeripheralManager.write("evil clue", "I've the clue.");
 		PeripheralManager.write("evil clue", "\x94You don't. Haha.");
 	}
 }
