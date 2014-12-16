@@ -10,19 +10,20 @@ var peripheralSkeleton = {};
 function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 	peripheralSkeleton = skeleton;
 
-	var log = function(msg, raw) {
-		var date = new Date().toString().replace(/ GMT.*/gi, ""),
-			_msg = "["+date+"]" + msg;
-
-		if (raw) return _msg;
-		else console.log(_msg);
-	};
-
-	var logError = function(err) {
-		console.error(log(err, true));
-	};
-
 	net.createServer(function(conn) {
+
+		var log = function(msg, raw) {
+			var date = new Date().toString().replace(/ GMT.*/gi, ""),
+				_msg = "["+date+"]" + msg;
+
+			if (raw) return _msg;
+			else console.log(_msg);
+		};
+
+		var logError = function(err) {
+			console.error(log(err, true));
+		};
+		
 		var hasHandshaked = false;
 		var peripheralType = "";
 
