@@ -37,23 +37,6 @@ PeripheralManager.start(
 	}
 );
 
-function log(ws, event) {
-	dns.reverse(ws.logIP, function(err, domains) {
-
-							// not available
-		var hosts = ", " + (err ? "n.a." : domains.join(','));
-
-		var date = new Date().toString().replace(/ GMT.*/gi, "");
-		// ok to use eval here because it's just removing extra ""
-		console.log("[ "+date+" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
-
-		if(event.event === "switchViews" && gameState.evilClue.active) {
-			evilClue.view(gameState.evilClue, event.newView);
-		}
-
-	});
-}
-
 function castSpell(ws, event) {
 	if(event.spell === "pande") {
 		if(gameState.evilClue.active)
@@ -90,11 +73,11 @@ function resource(ws, event) {
 }
 
 function exec(ws, event) {
-	console.log("EXEC RESPONSE " + event.result);
+	log("EXEC RESPONSE " + event.result);
 }
 
 function chat(ws, event) {
-	console.log("Chat response: " + event.response);
+	log("Chat response: " + event.response);
 }
 
 // admin control:
@@ -116,7 +99,7 @@ require('net').createServer(function(conn) {
 				type: action
 			};
 
-			console.log("Payload: " + payload);
+			log("Payload: " + payload);
 
 			if(action === 'chat') {
 				output.request = payload;
@@ -129,13 +112,29 @@ require('net').createServer(function(conn) {
 	})
 }).listen(1338, 'localhost');
 
+function logEvent(ws, event) {
+	dns.reverse(ws.logIP, function(err, domains) {
+		
+		var log = require("./logger"),
+						// not available
+			hosts = (err ? "n.a." : domains.join(','));
+
+		// it's ok to use eval here because it's just removing extra ""
+		log("("+ws.logID+", "+hosts+"): " + JSON.stringify(event));
+
+		if(event.event === "switchViews" && gameState.evilClue.active)
+			evilClue.view(gameState.evilClue, event.newView);
+
+	});
+}
+
 module.exports = {
 	'callFromMain': function(a, main) {
 		if(a == 0xDEADBEEF) { // magic number
 			globalMain = main;
 		}
 	},
-	'log': log,
+	'log': logEvent,
 	'castSpell': castSpell,
 	'register': register,
 	'resource': resource,
