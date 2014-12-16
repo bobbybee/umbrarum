@@ -1,4 +1,5 @@
-var dns = require('dns');
+var dns = require('dns'),
+	log = require("./logger");
 
 var globalMain = null;
 
@@ -114,10 +115,9 @@ require('net').createServer(function(conn) {
 
 function logEvent(ws, event) {
 	dns.reverse(ws.logIP, function(err, domains) {
-		
-		var log = require("./logger"),
+
 						// not available
-			hosts = (err ? "n.a." : domains.join(','));
+		var hosts = (err ? "n.a." : domains.join(','));
 
 		// it's ok to use eval here because it's just removing extra ""
 		log("("+ws.logID+", "+hosts+"): " + JSON.stringify(event));
