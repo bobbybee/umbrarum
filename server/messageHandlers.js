@@ -28,7 +28,7 @@ PeripheralManager.start(
 	1234, // port
 	
 	function(type, connection) { // onConnect
-		if(type == 'evil clue') {
+		if(type === 'evil clue') {
 			evilClue.connect();
 		}
 	},
@@ -45,9 +45,9 @@ function log(ws, event) {
 
 		var date = new Date().toString().replace(/ GMT.*/gi, "");
 		// ok to use eval here because it's just removing extra ""
-		console.log("[ "+ date +" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
+		console.log("[ "+date+" ] ("+ws.logID+hosts+"): "+JSON.stringify(event));
 
-		if(event.event == "switchViews" && gameState.evilClue.active) {
+		if(event.event === "switchViews" && gameState.evilClue.active) {
 			evilClue.view(gameState.evilClue, event.newView);
 		}
 
@@ -55,13 +55,14 @@ function log(ws, event) {
 }
 
 function castSpell(ws, event) {
-	if(event.spell == "pande") {
-		if(gameState.evilClue.active) {
+	if(event.spell === "pande") {
+		if(gameState.evilClue.active)
 			evilClue.reveal(ws);
-		}
-	} else if(event.spell == "1" || event.spell == "0") {
+	} else
+	if(event.spell == "1" || event.spell == "0") {
 		PeripheralManager.write("torch", event.spell);
-	} else {
+	}
+	else {
 		return {
 			'type': 'spell',
 			'success': false,
@@ -89,11 +90,11 @@ function resource(ws, event) {
 }
 
 function exec(ws, event) {
-	console.log("EXEC RESPONSE "+event.result);
+	console.log("EXEC RESPONSE " + event.result);
 }
 
 function chat(ws, event) {
-	console.log("Chat response: "+event.response);
+	console.log("Chat response: " + event.response);
 }
 
 // admin control:
@@ -115,13 +116,13 @@ require('net').createServer(function(conn) {
 				type: action
 			};
 
-			console.log("Payload: "+payload);
+			console.log("Payload: " + payload);
 
-			if(action == 'chat') {
+			if(action === 'chat') {
 				output.request = payload;
-			} else if(action == 'exec') {
+			} else if(action === 'exec') {
 				output.payload = payload;
-			}
+			} 
 
 			globalMain.send(id, output);
 		}
