@@ -7,23 +7,23 @@ var peripheralSkeleton = {};
 // value: (potentially anonymous) function for ondata
 // stateless protocol; peripheral manager only cares about the handshaking
 
+var log = function(msg, raw) {
+	var date = new Date().toString().replace(/ GMT.*/gi, ""),
+		_msg = "["+date+"]" + msg;
+
+	if (raw) return _msg;
+	else console.log(_msg);
+};
+
+var logError = function(err) {
+	console.error(log(err, true));
+};
+
 function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 	peripheralSkeleton = skeleton;
 
 	net.createServer(function(conn) {
 
-		var log = function(msg, raw) {
-			var date = new Date().toString().replace(/ GMT.*/gi, ""),
-				_msg = "["+date+"]" + msg;
-
-			if (raw) return _msg;
-			else console.log(_msg);
-		};
-
-		var logError = function(err) {
-			console.error(log(err, true));
-		};
-		
 		var hasHandshaked = false;
 		var peripheralType = "";
 
