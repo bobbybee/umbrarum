@@ -10,30 +10,43 @@ var peripheralSkeleton = {};
 function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 	peripheralSkeleton = skeleton;
 
+	var log = function(msg, raw) {
+		var date = new Date().toString().replace(/ GMT.*/gi, ""),
+			_msg = "["+date+"]" + msg;
+
+		if (raw) return _msg;
+		else console.log(_msg);
+	};
+
+	var logError = function(err) {
+		console.error(log(err, true));
+	};
+
 	net.createServer(function(conn) {
 		var hasHandshaked = false;
 		var peripheralType = "";
 
 		conn.on('data', function(message) {
-			if(hasHandshaked) {
+			if(hasHandshaked)
 				peripheralSkeleton[peripheralType](message);
-			} else {
+			else {
 				peripheralType = message.toString().trim(); // remove newline at the end
 
 				if(!peripheralSkeleton[peripheralType]) {
-					console.error("Peripheral of type '"+peripheralType+"' connected but no entry in skeleton");
+					logError("Peripheral of type '" + peripheralType + "' connected but no entry in skeleton");
 					conn.destroy(); // kick
 				}
 
 				if(connectedPeripherals[peripheralType]) {
-					console.error("Peripheral of type '"+peripheralType+"' attempting a connection, but is already connected. Potential security threat.");
+					logError("Peripheral of type '" + peripheralType + "' attempting a connection, but is already connected. Potential security threat.");
 					conn.destroy(); // kick
 				}
 
 				connectedPeripherals[peripheralType] = conn;
 				onConnect(peripheralType, conn);
 				hasHandshaked = true;
-				console.log(peripheralType+" connected!");
+				
+				log(peripheralType + " connected!");
 			}
 		});
 
@@ -51,9 +64,8 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 
 module.exports.start = PeripheralManager;
 module.exports.write = function(target, message) {
-	if(connectedPeripherals[target]) {
+	if(connectedPeripherals[target])
 		connectedPeripherals[target].write(message);
-	} else {
-		console.error("Attempted to send message "+message+" to non-connected or unknown peripheral "+target);
-	}
+	else
+		logError("Attempted to send message "+message+" to non-connected or unknown peripheral "+target);
 };
