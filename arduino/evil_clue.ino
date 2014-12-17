@@ -1,3 +1,5 @@
+// Parallax Serial LCD documentation at http://elmicro.com/files/parallax/seriallcd-v20.pdf
+
 #include <SoftwareSerial.h>
 #include <SPI.h>
 #include <Ethernet.h>
@@ -47,8 +49,7 @@ void loop() {
   if(client.available()) {
      char c = client.read();
           
-     mySerial.write(220);
-     delay(62);
+     beep(62);
      
      mySerial.write(c);
 
@@ -66,6 +67,7 @@ void beep(int length) {
 
 void clearLCD() {
    mySerial.write(12);
+   delay(5); // required after "Form Feed" command (see serial LCD documentation)
    mySerial.write(17);
    mySerial.write(128);
 }
