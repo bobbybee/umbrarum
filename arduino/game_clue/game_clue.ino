@@ -4,6 +4,9 @@ HARDWARE:
  - Arduino UNO R3
  - Arduino Ethernet Shield for UNO
  - Parallax Serial LCD
+ 
+HARDWARE SETTINGS:
+ - Serial LCD: SW1 off, SW2 on
    
 Connections:
  [ Arduino ] [ Serial LCD ]
