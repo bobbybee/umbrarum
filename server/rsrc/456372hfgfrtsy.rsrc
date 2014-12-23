@@ -1,0 +1,14 @@
+echo "\a\a\a\a\aWelcome liberator"
+sleep 1
+echo "\aI notice you have discovered this clue"
+sleep 1
+echo "\aNice idea, huh?"
+sleep 1
+echo "\aHaving the clue control your computer?"
+sleep 1
+echo "\aUnfortunately, you can't see that message. A moment."
+sleep 1
+clear
+sleep 1
+echo "\aBetter :)"
+sleep 1
