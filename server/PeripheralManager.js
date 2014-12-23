@@ -2,6 +2,8 @@ var net = require('net');
 var connectedPeripherals = {};
 var peripheralSkeleton = {};
 
+var log = require("./logger");
+
 // skeleton is in form of:
 // key: peripheral name
 // value: (potentially anonymous) function for ondata
@@ -11,29 +13,31 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 	peripheralSkeleton = skeleton;
 
 	net.createServer(function(conn) {
+
 		var hasHandshaked = false;
 		var peripheralType = "";
 
 		conn.on('data', function(message) {
-			if(hasHandshaked) {
+			if(hasHandshaked)
 				peripheralSkeleton[peripheralType](message);
-			} else {
+			else {
 				peripheralType = message.toString().trim(); // remove newline at the end
 
 				if(!peripheralSkeleton[peripheralType]) {
-					console.error("Peripheral of type '"+peripheralType+"' connected but no entry in skeleton");
+					log.error("Peripheral of type '" + peripheralType + "' connected but no entry in skeleton");
 					conn.destroy(); // kick
 				}
 
 				if(connectedPeripherals[peripheralType]) {
-					console.error("Peripheral of type '"+peripheralType+"' attempting a connection, but is already connected. Potential security threat.");
+					log.error("Peripheral of type '" + peripheralType + "' attempting a connection, but is already connected. Potential security threat.");
 					conn.destroy(); // kick
 				}
 
 				connectedPeripherals[peripheralType] = conn;
 				onConnect(peripheralType, conn);
 				hasHandshaked = true;
-				console.log(peripheralType+" connected!");
+				
+				log(peripheralType + " connected!");
 			}
 		});
 
@@ -51,9 +55,8 @@ function PeripheralManager(skeleton, port, onConnect, onDisconnect) {
 
 module.exports.start = PeripheralManager;
 module.exports.write = function(target, message) {
-	if(connectedPeripherals[target]) {
+	if(connectedPeripherals[target])
 		connectedPeripherals[target].write(message);
-	} else {
-		console.error("Attempted to send message "+message+" to non-connected or unknown peripheral "+target);
-	}
+	else
+		log.error("Attempted to send message "+message+" to non-connected or unknown peripheral "+target);
 };

@@ -36,6 +36,11 @@ _Note:  Clues will alternate between complicated IRL puzzles / experiences, and 
 * Levitation
   * Google it. It's possible
 
+## both IRL and not IRL
+
+* device that makes a popup with next clue (IRL to not IRL)
+  * (Arduino Leonardo)
+
 ## not IRL
 
 * imgur's

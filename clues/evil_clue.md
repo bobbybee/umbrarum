@@ -1,8 +1,8 @@
-Clue #: evil_clue
+Clue: evil_clue
 ====================
 
 A small LCD display somehow mounted on the wall, initialized with the words, 
-> I have the clue. \ You don't. Haha.
+> I've the clue. \ You don't. Haha.
 
 When any person goes to the official website, _umbrarum.com_, a piezo buzzer on the device makes a high-pitched noise and the LCD prints the following words, letter by letter (like a typewriter):
 > Can't enchant me \ Don't waste time
