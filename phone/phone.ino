@@ -13,7 +13,10 @@ void loop() {
      if(digitalRead(2) == HIGH) {
          state = nstate;
          if(state == LOW) {
-            Keyboard.write(' ');
+            Keyboard.print("\n");
+            delay(100);
+            Keyboard.print("0000\n");
+            /*Keyboard.write(' ');
             delay(100);
             Keyboard.write(' ');
             delay(100);
@@ -25,7 +28,7 @@ void loop() {
             delay(100);
             Keyboard.write('0');
             delay(100);
-            Keyboard.write('\n');
+            Keyboard.write('\n');*/
 
          }
      }

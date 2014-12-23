@@ -3,7 +3,11 @@ var id2ws = {};
 var messageHandlers = require('./messageHandlers');
 messageHandlers.callFromMain(0xDEADBEEF, {
 	'send': function(id, msg) {
-		id2ws[id].send(JSON.stringify(msg));
+		try {
+			id2ws[id].send(JSON.stringify(msg));
+		} catch(e) {
+			console.error(e);
+		}
 	}
 })
 

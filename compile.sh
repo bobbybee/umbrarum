@@ -9,8 +9,9 @@ uglifyjs portal/js/client.js --screw-ie8 --mangle --compress --lint -o ../umbrar
 uglifyjs portal/js/portal.js --screw-ie8 --mangle --compress --lint -o ../umbrarum.github.io/js/portal.js
 uglifyjs portal/js/viewmanager.js --screw-ie8 --mangle --compress --lint -o ../umbrarum.github.io/js/viewmanager.js
 cleancss -o ../umbrarum.github.io/css/style.css portal/css/style.css
+cp portal/img/* ../umbrarum.github.io/img/
 cd ../umbrarum.github.io
-git add index.html js/* css/*
+git add index.html js/* css/* img/*
 git commit -m "Build $COMMIT at `date`"
 git push origin master
 # cleancss -o a.out/css/reset.css portal/css/reset.css # is this used anywhere?
