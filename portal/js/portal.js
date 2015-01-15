@@ -62,13 +62,48 @@ window.onload = function() {
 
 		};
 	}
+
+	$("#spell").keyup(function() {
+		updateWandIcon();
+	});
+}
+
+function updateWandIcon() {
+	var $icon = $("#spell + span"),
+		$input = $("#spell");
+
+	if ($input.val() !== "") {
+		$icon.text("/'");
+		$input.addClass("ready");
+
+		$icon.on("click", function() {
+			castSpell($input.val());
+		});
+	}
+	else {
+		$icon.text(">");
+		$input.removeClass("ready");
+
+		$icon.off("click");
+	}
 }
 
 function castSpell(spell) {
+	//$("#spell + span").off("click"); // to prevent it from being triggered repeatedly by an impatient user
+	// ^ not happening... :(
+	$("#spell").val('');
+	updateWandIcon();
+
+	$("#spell + span").addClass("active");
+
 	globals.socket.send({
 		type: "castSpell",
 		spell: spell
 	});
+
+	setTimeout(function() {
+		$("#spell + span").removeClass("active");
+	}, 200);
 }
 
 function spellResult(event) {

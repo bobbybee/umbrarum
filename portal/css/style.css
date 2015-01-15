@@ -1,13 +1,13 @@
+@import url(//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Roboto:400,400italic,700,100italic,100|Montserrat:400,700);
 @import url(reset.css);
-
 body {
     background: #eee;
 }
-
 * {
     font-family: "Roboto";
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
 }
-
 div {
     width: 400px;
     position: relative;
@@ -18,7 +18,6 @@ div {
     text-align: center;
     transition: width 0.5s ease-in-out;
 }
-
 .portal {
     position: relative;
     width: 95%;
@@ -28,37 +27,102 @@ div {
     cursor: pointer;
     transition: opacity 0.18s ease-in-out;
 }
-
 .portal:hover {
-    opacity: 1;        
+    opacity: 1;
 }
-
+input.sliding-button {
+    padding: 1em;
+    height: 2.5em;
+    width: calc(100% - 2em);
+    margin-left: 1em;
+    border: none;
+    border-left: #333 solid 8em;
+    background: #f9f9f9;
+    color: #111;
+    transition: 100ms ease-out all;
+    font-size: 14px;
+    display: block;
+    position: relative;
+}
+input.sliding-button:focus {
+    outline: none;
+    border-left: #74B43C 3em solid;
+    background: #fff;
+    transition: 100ms ease-out all;
+}
+input.sliding-button + label {
+    position: relative;
+    top: -1.87em;
+    left: -109px;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #eee;
+}
+input.sliding-button:focus + label {
+    left: -20em;
+}
+#register-name {
+    margin-top: 1em;
+}
 h1, h2 {
     padding: 20px;
     font-family: "Source Code Pro";
 }
-
 h1 {
     font-size: 2em;
 }
-
 h2 {
     font-size: 1.85em;
 }
-
 p {
     padding: 0 20px 20px 20px;
     font-family: "Roboto";
 }
-
 #spell {
-    width: calc(100% - 120px);
+    width: calc(100% - 1.3em);
+    border: none;
+    border-left: #3C74B4 solid 3em;
+    transition: 500ms ease-out border-left-color;
+    outline: none;
+    height: 2.5em;
+    color: #fff;
+    padding: 1em;
+    font-family: monospace;
+    font-size: 1.3em;
+    background-color: #333;
+    display: inline;
+}
+#spell::-webkit-input-placeholder {  color: #ccc;  }
+#spell:-moz-placeholder {  color: #ccc;  }
+#spell::-moz-placeholder {  color: #ccc;  }
+#spell:-ms-input-placeholder {  color: #ccc;  }
+
+#spell + span {
+    font-family: monospace;
+    font-size: 1.4em;
+    position: absolute;
+    left: 1.65em;
+    padding-top: 0.6em;
+    padding-left: 0.21em;
+    width: 2.8em;
+    height: 2.3em;
+}
+#spell.ready {
+    border-left-color: #B4743C;
+}
+#spell.ready + span {
+    cursor: pointer;
+    transition: 50ms ease-in background-color;
+}
+#spell.ready + span:hover, #spell + span.active {
+    background-color: #daba55;
 }
 
 #register-msg {
+    padding: 1em;
     width: 100%;
 }
-
 button {
     width: 100%;
     color: #fff;
@@ -68,20 +132,17 @@ button {
     outline: none;
     padding: 5px;
 }
-
 button:hover {
     background-color: #556655;
 }
-
 button:active {
     background-color: #665555;
 }
-
 #cast-spell {
     width: 60px;
+    height: 2.5em;
     margin-left: 10px;
 }
-
 a {
     color: #BBBBFF;
     text-decoration: underline;
@@ -93,16 +154,9 @@ textarea, input[type="text"] {
     outline: none;
     resize: none;
 }
-
-#register-name {
-    margin-left: 1em;
-    width: 200px;
-}
-
 i {
     font-style: italic;
 }
-
 .arrow {
     position: relative;
     margin-top: -18px;

@@ -9,7 +9,6 @@ Please use your best code practices; the website builds minified. HTML comments 
 
 <head>
     <title>Venēficī Umbrārum - Become a Liberator!</title>
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Roboto:400,400italic,700,100italic,100" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <!-- allow macrons to display correctly -->
@@ -28,13 +27,13 @@ Please use your best code practices; the website builds minified. HTML comments 
         port: 8080
     };
     </script>
+    <script src="lib/jquery.min.js"></script>
     <script src="js/viewmanager.js"></script>
     <script src="js/portal.js"></script>
     <script src="js/client.js"></script>
 </head>
 
 <body>
-
     <!-- each "page" on the website is represented by a view -->
     <!-- views are div elements whose id is "view "+viewName -->
     <!-- also add a declaration of the view in the globals around L27 -->
@@ -68,8 +67,8 @@ Please use your best code practices; the website builds minified. HTML comments 
     <div class="view" id="wand">
         <h2>Wand</h2>
         <p>
-            <input type="text" id="spell" placeholder="spell" />
-            <button id="cast-spell" onclick="castSpell(document.getElementById('spell').value)">Cast</button>
+            <input type="text" id="spell" placeholder="spell" name="spell" onkeydown="if (event.keyCode === 13) castSpell(this.value);" />
+            <span>></span>
         </p>
         <p>
             <button id="return" onclick="globals.viewManager.switchViews('main')">Return to Portal Lobby</button>
@@ -78,8 +77,9 @@ Please use your best code practices; the website builds minified. HTML comments 
 
     <div class="view" id="register">
         <h2>Become a Liberator!</h2>
-        <p>Name:
-            <input type="text" id="register-name" placeholder="Mattias Wright" />
+        <p>
+            <input type="text" id="register-name" class="sliding-button" name="name" placeholder="Mattias Wright" />
+            <label for="name">full name</label>
         </p>
         <p>Message for the <i>venēficī umbrārum:</i>
         </p>
